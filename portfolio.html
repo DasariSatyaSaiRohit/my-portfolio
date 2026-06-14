@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Satya Sai Rohit Dasari — Full Stack Engineer</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Roboto',sans-serif;}
+body{background:#F8F9FA;color:#333333;}
+
+/* ── HEADER ── */
+#site-header{
+  position:sticky;top:0;z-index:999;
+  background:#FFFFFF;
+  box-shadow:0 2px 4px rgba(0,0,0,0.1);
+  height:70px;
+  display:flex;align-items:center;
+  padding:0 1.5rem;
+  gap:1.5rem;
+}
+#header-name{
+  font-size:16px;font-weight:700;color:#1A1A1A;
+  text-decoration:none;white-space:nowrap;
+  flex-shrink:0;
+}
+#header-name:hover{color:#0066FF;}
+#header-contacts{
+  display:flex;align-items:center;gap:10px;
+  flex-wrap:wrap;
+  margin-left:auto;
+}
+.contact-badge{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:8px 12px;
+  background:#E6F0FF;color:#333333;
+  border-radius:6px;font-size:14px;
+  text-decoration:none;white-space:nowrap;
+  transition:background 0.2s,color 0.2s;
+}
+.contact-badge:hover{background:#0066FF;color:#FFFFFF;}
+.contact-badge.resume-badge{
+  background:#0066FF;color:#FFFFFF;font-weight:600;
+}
+.contact-badge.resume-badge:hover{background:#0047CC;color:#FFFFFF;}
+
+/* ── PAGES ── */
+.page{display:none;min-height:calc(100vh - 70px);}
+.page.active{display:block;}
+
+/* ── BACK BUTTON ── */
+.back-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  color:#0066FF;font-size:14px;font-weight:600;
+  text-decoration:none;cursor:pointer;
+  padding:8px 0;margin:1.5rem 2rem;
+  background:none;border:none;
+}
+.back-btn:hover{color:#1A1A1A;text-decoration:underline;}
+
+/* ── HERO ── */
+#hero{
+  max-width:1200px;margin:0 auto;padding:60px 2rem;
+  display:grid;grid-template-columns:1fr auto;gap:48px;align-items:start;
+}
+.hero-left h1{font-size:48px;font-weight:700;color:#1A1A1A;line-height:1.1;margin-bottom:12px;}
+.hero-left h2{font-size:24px;font-weight:700;color:#0066FF;margin-bottom:16px;}
+.hero-left p{font-size:16px;color:#666666;line-height:1.7;margin-bottom:20px;max-width:560px;}
+.location-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:#F0F0F0;color:#444;padding:6px 14px;border-radius:20px;
+  font-size:14px;text-decoration:none;margin-right:8px;
+}
+.relocation-badge{
+  display:inline-flex;align-items:center;gap:5px;
+  background:#E8F5E9;color:#27AE60;padding:6px 14px;border-radius:20px;
+  font-size:14px;font-weight:600;
+}
+.badges-row{margin-bottom:24px;display:flex;flex-wrap:wrap;gap:8px;}
+.spec-line{font-size:15px;color:#333;margin-bottom:20px;}
+.spec-line strong{color:#0066FF;}
+.skill-badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;}
+.skill-badge{
+  padding:0.4rem 0.9rem;background:#F8F9FA;border:0.5px solid #DDDDDD;
+  border-radius:5px;font-size:0.85rem;color:#333;cursor:default;
+  transition:background 0.2s,color 0.2s,border-color 0.2s;
+}
+.skill-badge:hover{background:#0066FF;color:#FFF;border-color:#0066FF;}
+.hero-photo{
+  width:220px;height:280px;border-radius:12px;
+  border:1px solid #DDDDDD;
+  box-shadow:0 4px 12px rgba(0,0,0,0.1);
+  background:#E6F0FF;object-fit:cover;flex-shrink:0;
+}
+
+/* ── SECTIONS ── */
+.section{padding:60px 2rem;max-width:1200px;margin:0 auto;}
+.section-title{font-size:28px;font-weight:700;color:#1A1A1A;margin-bottom:8px;}
+.section-subtitle{font-size:15px;color:#666;margin-bottom:28px;}
+.section-divider{height:2px;background:linear-gradient(90deg,#0066FF 0%,transparent 100%);margin-bottom:28px;}
+
+/* ── PROJECT CARDS ── */
+.cards-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;}
+.card{
+  background:#FFFFFF;border:1px solid #DDDDDD;border-radius:10px;
+  padding:1.5rem;box-shadow:0 2px 8px rgba(0,0,0,0.06);
+  transition:all 0.2s ease;
+}
+.card:hover{border-color:#0066FF;box-shadow:0 4px 16px rgba(0,102,255,0.1);transform:translateY(-2px);}
+.card-icon{
+  width:100%;height:80px;border-radius:8px;
+  background:linear-gradient(135deg,#E6F0FF 0%,#F0E6FF 100%);
+  display:flex;align-items:center;justify-content:center;
+  font-size:2rem;margin-bottom:1rem;
+}
+.card-title{font-size:20px;font-weight:700;color:#1A1A1A;margin-bottom:4px;}
+.card-year{font-size:12px;color:#999;margin-bottom:12px;}
+.card-label{font-size:12px;font-weight:600;color:#999;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;}
+.card-desc{font-size:14px;color:#666;line-height:1.7;margin-bottom:14px;}
+.card-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;}
+.card-tag{
+  padding:3px 10px;background:#F0F4FF;color:#0066FF;
+  border-radius:4px;font-size:12px;font-weight:500;
+}
+.card-link{font-size:14px;font-weight:600;color:#0066FF;text-decoration:none;cursor:pointer;}
+.card-link:hover{color:#1A1A1A;text-decoration:underline;}
+.view-all-btn{
+  display:inline-block;margin-top:2rem;
+  padding:12px 32px;background:#0066FF;color:#FFF;
+  border-radius:8px;font-size:16px;font-weight:700;
+  text-decoration:none;cursor:pointer;border:none;
+  transition:transform 0.2s,box-shadow 0.2s;
+}
+.view-all-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,102,255,0.3);}
+
+/* ── EXP / EDU CARDS ── */
+.exp-card{
+  background:#FAFAFA;border:1px solid #DDDDDD;border-radius:10px;
+  padding:1.5rem;margin-bottom:1.5rem;
+}
+.exp-card:hover{border-color:#0066FF;}
+.exp-role{font-size:18px;font-weight:700;color:#1A1A1A;margin-bottom:2px;}
+.exp-company{font-size:16px;font-weight:600;color:#0066FF;margin-bottom:2px;}
+.exp-meta{font-size:14px;color:#666;margin-bottom:12px;}
+.exp-desc{font-size:0.95rem;color:#666;line-height:1.6;}
+
+/* ── FULL PROJECT PAGE ── */
+.full-card{
+  background:#FFF;border:1px solid #DDDDDD;border-radius:10px;
+  padding:1.5rem;margin-bottom:1.5rem;
+  transition:all 0.2s ease;
+}
+.full-card:hover{border-color:#0066FF;box-shadow:0 4px 16px rgba(0,102,255,0.08);}
+.full-card-title{font-size:24px;font-weight:700;color:#1A1A1A;margin-bottom:4px;}
+.bullets{list-style:none;padding:0;margin:8px 0 14px;}
+.bullets li{padding:4px 0 4px 1.5rem;position:relative;font-size:14px;color:#333;line-height:1.6;}
+.bullets li::before{content:'▸';color:#0066FF;position:absolute;left:0;}
+.full-card-links{display:flex;gap:12px;margin-top:12px;}
+.full-link-btn{
+  padding:8px 20px;background:#0066FF;color:#FFF;border-radius:6px;
+  font-size:14px;font-weight:600;text-decoration:none;
+  transition:background 0.2s;
+}
+.full-link-btn:hover{background:#0047CC;}
+
+/* ── TIMELINE PAGE ── */
+.page-inner{max-width:900px;margin:0 auto;padding:0 2rem 60px;}
+.page-title{font-size:32px;font-weight:700;color:#1A1A1A;margin-bottom:8px;padding-top:2rem;}
+.page-rule{height:2px;background:linear-gradient(90deg,#0066FF,transparent);margin-bottom:32px;}
+
+/* ── EDU BADGES ── */
+.edu-badge{
+  padding:3px 10px;background:#E6F0FF;color:#0066FF;
+  border-radius:4px;font-size:12px;font-weight:500;
+  display:inline-block;margin:3px;
+}
+.gpa-badge{
+  display:inline-block;padding:4px 12px;background:#F0F0F0;
+  color:#333;border-radius:6px;font-size:14px;font-weight:700;
+  margin:4px 0 12px;
+}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  #hero{grid-template-columns:1fr;gap:32px;}
+  .hero-photo{width:180px;height:230px;margin:0 auto;}
+  .hero-left h1{font-size:34px;}
+  .cards-grid{grid-template-columns:1fr;}
+  #header-contacts{gap:6px;}
+  .contact-badge{padding:6px 9px;font-size:12px;}
+  #site-header{height:auto;padding:12px 1rem;flex-wrap:wrap;}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ STICKY HEADER ══ -->
+<header id="site-header">
+  <a href="#" id="header-name" onclick="showPage('home');return false;">Satya Sai Rohit Dasari</a>
+  <nav id="header-contacts">
+    <a class="contact-badge" href="tel:+918121122896">📱 +91 8121122896</a>
+    <a class="contact-badge" href="mailto:dasarisatyasairohit@gmail.com">📧 dasarisatyasairohit@gmail.com</a>
+    <a class="contact-badge" href="https://www.linkedin.com/in/satya-sai-rohit-dasari-547250286/" target="_blank">💼 LinkedIn</a>
+    <a class="contact-badge resume-badge" href="D_S_S_Rohit_Resume.pdf" download="Satya_Sai_Rohit_Dasari_Resume.pdf">⬇ Download Resume</a>
+    <a class="contact-badge" href="https://github.com/DasariSatyaSaiRohit" target="_blank">⚙️ GitHub</a>
+  </nav>
+</header>
+
+<!-- ══════════════════════════════════════════ PAGE 1: HOME ══════════════════════════════════════════ -->
+<div id="page-home" class="page active">
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-left">
+      <h1>Satya Sai Rohit Dasari</h1>
+      <h2>Full Stack Engineer</h2>
+      <p>Backend-focused engineer with production experience building high-performance APIs, BI dashboards, and microservices. Specialised in Python, FastAPI, and async architectures that handle real-world scale.</p>
+      <div class="badges-row">
+        <a class="location-badge" href="#">📍 Visakhapatnam, Andhra Pradesh, India</a>
+        <span class="relocation-badge">✓ Open to Relocation</span>
+      </div>
+      <p class="spec-line">Key Specialisation: <strong>Backend: Python, FastAPI</strong></p>
+      <div class="skill-badges">
+        <span class="skill-badge">Python</span>
+        <span class="skill-badge">FastAPI</span>
+        <span class="skill-badge">React</span>
+        <span class="skill-badge">Angular</span>
+        <span class="skill-badge">NestJS</span>
+        <span class="skill-badge">PostgreSQL</span>
+        <span class="skill-badge">Redis</span>
+        <span class="skill-badge">Docker</span>
+      </div>
+    </div>
+    <img class="hero-photo" src="C:\Users\satya\Desktop\Tech\Rohit.jpg" alt="Satya Sai Rohit Dasari"
+         onerror="this.style.background='#E6F0FF';this.removeAttribute('src')"/>
+  </section>
+
+  <!-- PROJECTS PREVIEW -->
+  <div style="background:#F0F4FF;padding:2px 0;">
+  <div class="section">
+    <h2 class="section-title">Featured Projects</h2>
+    <p class="section-subtitle">Building things that actually solve problems</p>
+    <div class="section-divider"></div>
+    <div class="cards-grid">
+
+      <div class="card">
+        <div class="card-icon">🧠</div>
+        <div class="card-title">QueryMind</div>
+        <div class="card-year">2025</div>
+        <div class="card-label">Problem It Solves</div>
+        <div class="card-desc">Converts natural language to SQL across PostgreSQL, MySQL, and SQLite with enterprise-grade security — JWT auth, SELECT-only enforcement, and Redis schema caching for sub-200ms responses.</div>
+        <div class="card-label">Skills Used</div>
+        <div class="card-tags">
+          <span class="card-tag">Python</span><span class="card-tag">FastAPI</span>
+          <span class="card-tag">React</span><span class="card-tag">NestJS</span>
+          <span class="card-tag">PostgreSQL</span><span class="card-tag">Redis</span>
+          <span class="card-tag">RabbitMQ</span><span class="card-tag">Docker</span>
+        </div>
+        <a class="card-link" onclick="showPage('projects');return false;" href="#">View Details →</a>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">📄</div>
+        <div class="card-title">ResumeJobMatcher</div>
+        <div class="card-year">2025</div>
+        <div class="card-label">Problem It Solves</div>
+        <div class="card-desc">Browser-only resume parser with AI job matching — parses PDF/DOCX, sends to Claude API, returns 15+ matched job listings with apply links. Zero backend required.</div>
+        <div class="card-label">Skills Used</div>
+        <div class="card-tags">
+          <span class="card-tag">Angular 17</span><span class="card-tag">TypeScript</span>
+          <span class="card-tag">Tailwind CSS</span><span class="card-tag">Anthropic API</span>
+          <span class="card-tag">PDF.js</span><span class="card-tag">Mammoth.js</span>
+        </div>
+        <a class="card-link" onclick="showPage('projects');return false;" href="#">View Details →</a>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">📊</div>
+        <div class="card-title">Advanced BI Dashboard System</div>
+        <div class="card-year">2024</div>
+        <div class="card-label">Problem It Solves</div>
+        <div class="card-desc">Custom dashboards with 5+ drill-down Highcharts visualisations and sub-200ms API responses via Redis caching, built for concurrent user loads of 50+ with 100k+ daily requests.</div>
+        <div class="card-label">Skills Used</div>
+        <div class="card-tags">
+          <span class="card-tag">Angular</span><span class="card-tag">Highcharts</span>
+          <span class="card-tag">Redux</span><span class="card-tag">MySQL</span>
+          <span class="card-tag">Redis</span><span class="card-tag">Jest</span>
+        </div>
+        <a class="card-link" onclick="showPage('projects');return false;" href="#">View Details →</a>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">📋</div>
+        <div class="card-title">Bulk Excel Workflow Engine</div>
+        <div class="card-year">2024</div>
+        <div class="card-label">Problem It Solves</div>
+        <div class="card-desc">Handles 1,000+ row Excel uploads with row-level validation and RabbitMQ async integration, ensuring ACID consistency across microservice databases during bulk operations.</div>
+        <div class="card-label">Skills Used</div>
+        <div class="card-tags">
+          <span class="card-tag">ExcelJS</span><span class="card-tag">Node.js</span>
+          <span class="card-tag">RabbitMQ</span><span class="card-tag">PostgreSQL</span>
+          <span class="card-tag">MongoDB</span>
+        </div>
+        <a class="card-link" onclick="showPage('projects');return false;" href="#">View Details →</a>
+      </div>
+
+    </div>
+    <div style="text-align:center;margin-top:2rem;">
+      <a class="view-all-btn" onclick="showPage('projects');return false;" href="#">View All Projects →</a>
+    </div>
+  </div>
+  </div>
+
+  <!-- EXPERIENCE PREVIEW -->
+  <div class="section">
+    <h2 class="section-title">Experience</h2>
+    <div class="section-divider"></div>
+    <div class="exp-card">
+      <div class="exp-role">Software Development Engineer</div>
+      <div class="exp-company">Akrivia Automation</div>
+      <div class="exp-meta">📍 Visakhapatnam, India &nbsp;·&nbsp; July 2024 – May 2026 (2 years)</div>
+      <div class="exp-desc">Building BI dashboards, bulk Excel workflows, and high-performance APIs with Redis optimisation and RabbitMQ messaging across microservices.</div>
+      <br/>
+      <a class="card-link" onclick="showPage('experience');return false;" href="#">View Full Experience →</a>
+    </div>
+    <div style="text-align:center;">
+      <a class="view-all-btn" onclick="showPage('experience');return false;" href="#">View Full Experience →</a>
+    </div>
+  </div>
+
+  <!-- EDUCATION PREVIEW -->
+  <div style="background:#F0F4FF;padding:2px 0;">
+  <div class="section">
+    <h2 class="section-title">Education</h2>
+    <div class="section-divider"></div>
+    <div class="exp-card">
+      <div class="exp-role">B.Tech</div>
+      <div class="exp-company">CSE (IoT) — Internet of Things</div>
+      <div class="exp-meta">Raghu Engineering College &nbsp;·&nbsp; Visakhapatnam, Andhra Pradesh</div>
+      <div class="exp-meta">Nov 2021 – Apr 2025</div>
+      <div class="gpa-badge">GPA: 8.85 / 10</div>
+      <br/>
+      <a class="card-link" onclick="showPage('education');return false;" href="#">View Full Education →</a>
+    </div>
+    <div style="text-align:center;">
+      <a class="view-all-btn" onclick="showPage('education');return false;" href="#">View Full Education →</a>
+    </div>
+  </div>
+  </div>
+
+</div><!-- /page-home -->
+
+
+<!-- ══════════════════════════════════════════ PAGE 2: PROJECTS ══════════════════════════════════════════ -->
+<div id="page-projects" class="page">
+  <button class="back-btn" onclick="showPage('home')">← Back to Home</button>
+  <div class="page-inner">
+    <h2 class="page-title">All Projects</h2>
+    <div class="page-rule"></div>
+
+    <div class="full-card">
+      <div style="width:100%;height:90px;border-radius:8px;background:linear-gradient(135deg,#E6F0FF,#D0E8FF);display:flex;align-items:center;justify-content:center;font-size:2.5rem;margin-bottom:1.2rem;">🧠</div>
+      <div class="full-card-title">QueryMind — Natural Language to SQL Engine</div>
+      <div class="card-year">2025</div>
+      <div style="height:1px;background:#DDDDDD;margin:14px 0;"></div>
+      <div class="card-label">Problem It Solves</div>
+      <p class="card-desc">Enterprises need to query databases without knowing SQL. QueryMind bridges that gap with a full-stack microservices system — NestJS gateway with JWT auth and rate-limiting, a FastAPI service for SQL generation and validation, and a React dashboard. Supports PostgreSQL, MySQL, and SQLite with multi-database routing and enterprise-grade security throughout.</p>
+      <div class="card-label" style="margin-top:12px;">Skills Used</div>
+      <div class="card-tags" style="margin-bottom:14px;">
+        <span class="card-tag">Python</span><span class="card-tag">FastAPI</span>
+        <span class="card-tag">React</span><span class="card-tag">NestJS</span>
+        <span class="card-tag">PostgreSQL</span><span class="card-tag">Redis</span>
+        <span class="card-tag">RabbitMQ</span><span class="card-tag">Celery</span>
+        <span class="card-tag">Docker</span><span class="card-tag">JWT Auth</span>
+        <span class="card-tag">SQLGlot</span><span class="card-tag">Ollama LLM</span>
+      </div>
+      <div class="card-label">Key Achievements</div>
+      <ul class="bullets">
+        <li>Built NL-to-SQL microservices with NestJS gateway + FastAPI inference service</li>
+        <li>Async non-blocking architecture with Celery workers and RabbitMQ for history persistence</li>
+        <li>Three-layer validation: regex → SQLGlot AST parse → schema check</li>
+        <li>Reduced DB introspection by ~60% via Redis schema caching (sub-200ms responses)</li>
+        <li>SELECT-only enforcement + Fernet credential encryption + role-based access control</li>
+        <li>Structured logging with request tracing across all services</li>
+      </ul>
+      <div class="full-card-links">
+        <a class="full-link-btn" href="https://github.com/DasariSatyaSaiRohit" target="_blank">GitHub Repository →</a>
+      </div>
+    </div>
+
+    <div class="full-card">
+      <div style="width:100%;height:90px;border-radius:8px;background:linear-gradient(135deg,#F0E6FF,#E6F0FF);display:flex;align-items:center;justify-content:center;font-size:2.5rem;margin-bottom:1.2rem;">📄</div>
+      <div class="full-card-title">ResumeJobMatcher — AI-Powered Job Finder</div>
+      <div class="card-year">2025</div>
+      <div style="height:1px;background:#DDDDDD;margin:14px 0;"></div>
+      <div class="card-label">Problem It Solves</div>
+      <p class="card-desc">Job seekers struggle to find roles that genuinely match their skills. ResumeJobMatcher is a completely browser-based tool that parses uploaded PDF or DOCX resumes using pdfjs-dist and Mammoth.js, sends the parsed content to the Claude API, and returns 15 AI-matched job listings with direct apply links — no backend or server required.</p>
+      <div class="card-label" style="margin-top:12px;">Skills Used</div>
+      <div class="card-tags" style="margin-bottom:14px;">
+        <span class="card-tag">Angular 17</span><span class="card-tag">TypeScript</span>
+        <span class="card-tag">Tailwind CSS</span><span class="card-tag">Anthropic API</span>
+        <span class="card-tag">PDF.js</span><span class="card-tag">Mammoth.js</span>
+      </div>
+      <div class="card-label">Key Achievements</div>
+      <ul class="bullets">
+        <li>Zero-backend architecture — everything runs client-side in the browser</li>
+        <li>Parses both PDF and DOCX formats via pdfjs-dist and Mammoth.js</li>
+        <li>Claude API integration returns 15+ curated job matches with apply links</li>
+        <li>Built with Angular 17 standalone components and Tailwind CSS</li>
+      </ul>
+      <div class="full-card-links">
+        <a class="full-link-btn" href="https://github.com/DasariSatyaSaiRohit" target="_blank">GitHub Repository →</a>
+      </div>
+    </div>
+
+    <div class="full-card">
+      <div style="width:100%;height:90px;border-radius:8px;background:linear-gradient(135deg,#E6F9FF,#E6F0FF);display:flex;align-items:center;justify-content:center;font-size:2.5rem;margin-bottom:1.2rem;">📊</div>
+      <div class="full-card-title">Advanced BI Dashboard System</div>
+      <div class="card-year">2024</div>
+      <div style="height:1px;background:#DDDDDD;margin:14px 0;"></div>
+      <div class="card-label">Problem It Solves</div>
+      <p class="card-desc">Business teams needed interactive drill-down analytics without waiting minutes for data to load. This system delivers custom BI dashboards with 5+ Highcharts chart types, drill-down filters, and sub-200ms API responses via Redis caching — maintaining performance under 50+ concurrent users and 100,000+ daily requests.</p>
+      <div class="card-label" style="margin-top:12px;">Skills Used</div>
+      <div class="card-tags" style="margin-bottom:14px;">
+        <span class="card-tag">Angular</span><span class="card-tag">Highcharts</span>
+        <span class="card-tag">Redux</span><span class="card-tag">MySQL</span>
+        <span class="card-tag">PostgreSQL</span><span class="card-tag">Redis</span>
+        <span class="card-tag">API Design</span><span class="card-tag">Jest</span>
+      </div>
+      <div class="card-label">Key Achievements</div>
+      <ul class="bullets">
+        <li>5+ drill-down chart types with interactive filters and dynamic data loading</li>
+        <li>Sub-200ms API response times under sustained load via Redis caching</li>
+        <li>~40% reduction in redundant DB queries on high-frequency endpoints</li>
+        <li>Unit tested with Jest across all critical data transformation layers</li>
+      </ul>
+    </div>
+
+    <div class="full-card">
+      <div style="width:100%;height:90px;border-radius:8px;background:linear-gradient(135deg,#FFF5E6,#E6F0FF);display:flex;align-items:center;justify-content:center;font-size:2.5rem;margin-bottom:1.2rem;">📋</div>
+      <div class="full-card-title">Bulk Excel Workflow Engine</div>
+      <div class="card-year">2024</div>
+      <div style="height:1px;background:#DDDDDD;margin:14px 0;"></div>
+      <div class="card-label">Problem It Solves</div>
+      <p class="card-desc">Operations teams frequently upload large Excel files that must be validated and written to multiple microservice databases atomically. This engine processes 1,000+ row files with row-level validation, async RabbitMQ integration, and ACID transaction guarantees across PostgreSQL and MongoDB services — no partial failures.</p>
+      <div class="card-label" style="margin-top:12px;">Skills Used</div>
+      <div class="card-tags" style="margin-bottom:14px;">
+        <span class="card-tag">ExcelJS</span><span class="card-tag">Node.js</span>
+        <span class="card-tag">RabbitMQ</span><span class="card-tag">PostgreSQL</span>
+        <span class="card-tag">MongoDB</span><span class="card-tag">ACID Transactions</span>
+      </div>
+      <div class="card-label">Key Achievements</div>
+      <ul class="bullets">
+        <li>Handles 1,000+ row Excel files with per-row validation and error reporting</li>
+        <li>RabbitMQ integration ensures async processing without blocking API responses</li>
+        <li>ACID consistency maintained across PostgreSQL and MongoDB microservice DBs</li>
+        <li>Built with ExcelJS for efficient streaming parse of large files</li>
+      </ul>
+    </div>
+
+  </div>
+</div><!-- /page-projects -->
+
+
+<!-- ══════════════════════════════════════════ PAGE 3: EXPERIENCE ══════════════════════════════════════════ -->
+<div id="page-experience" class="page">
+  <button class="back-btn" onclick="showPage('home')">← Back to Home</button>
+  <div class="page-inner">
+    <h2 class="page-title">Professional Experience</h2>
+    <div class="page-rule"></div>
+
+    <div class="full-card">
+      <div style="font-size:20px;font-weight:700;color:#1A1A1A;margin-bottom:4px;">Software Development Engineer</div>
+      <div style="font-size:18px;font-weight:600;color:#0066FF;margin-bottom:4px;">Akrivia Automation</div>
+      <div style="font-size:14px;color:#666;margin-bottom:16px;">📍 Visakhapatnam, India &nbsp;·&nbsp; July 2024 – May 2026 (2 years)</div>
+      <div style="height:1px;background:#DDDDDD;margin-bottom:16px;"></div>
+      <div class="card-label">Achievements &amp; Metrics</div>
+      <ul class="bullets">
+        <li>Built custom BI dashboards (Highcharts/Angular) with 5+ drill-down charts and sub-200ms API responses via Redis caching</li>
+        <li>Designed complex forms end-to-end with Zod schema validation — field-level rules, cross-field constraints, and injection prevention</li>
+        <li>Built bulk Excel workflows (ExcelJS) handling 1,000+ row files with row-level validation and RabbitMQ integration for ACID consistency across microservice DBs</li>
+        <li>Reduced redundant DB queries by ~40% via Redis caching on high-frequency endpoints (50+ concurrent users, 100k+ requests/day)</li>
+        <li>Designed RESTful APIs with documented contracts and unit tests; async inter-service sync via RabbitMQ</li>
+      </ul>
+      <div style="height:1px;background:#DDDDDD;margin:16px 0;"></div>
+      <div class="card-label">Tech Stack</div>
+      <div class="card-tags">
+        <span class="card-tag">MySQL</span><span class="card-tag">PostgreSQL</span>
+        <span class="card-tag">MongoDB</span><span class="card-tag">Angular</span>
+        <span class="card-tag">NestJS</span><span class="card-tag">React</span>
+        <span class="card-tag">Redis</span><span class="card-tag">RabbitMQ</span>
+        <span class="card-tag">Jira</span><span class="card-tag">Git</span>
+        <span class="card-tag">Postman</span>
+      </div>
+    </div>
+  </div>
+</div><!-- /page-experience -->
+
+
+<!-- ══════════════════════════════════════════ PAGE 4: EDUCATION ══════════════════════════════════════════ -->
+<div id="page-education" class="page">
+  <button class="back-btn" onclick="showPage('home')">← Back to Home</button>
+  <div class="page-inner">
+    <h2 class="page-title">Education</h2>
+    <div class="page-rule"></div>
+
+    <div class="full-card">
+      <div style="font-size:20px;font-weight:700;color:#1A1A1A;margin-bottom:4px;">B.Tech in CSE (IoT)</div>
+      <div style="font-size:18px;font-weight:600;color:#0066FF;margin-bottom:4px;">Internet of Things</div>
+      <div style="font-size:18px;font-weight:500;color:#1A1A1A;margin-bottom:4px;">Raghu Engineering College</div>
+      <div style="font-size:14px;color:#666;">📍 Visakhapatnam, Andhra Pradesh, India</div>
+      <div style="font-size:14px;color:#666;margin-bottom:8px;">November 2021 – April 2025</div>
+      <span class="gpa-badge">GPA: 8.85 / 10.0</span>
+      <div style="height:1px;background:#DDDDDD;margin:16px 0;"></div>
+      <div class="card-label">Achievements</div>
+      <ul class="bullets">
+        <li>B.Tech Honours Degree in Computer Science and Engineering</li>
+        <li>DBMS — NPTEL Certification, September 2024</li>
+        <li>IoT Specialisation: Embedded systems, Sensors, Real-time data processing, Cloud integration</li>
+        <li>Consistent high performance across all semesters — GPA 8.85/10</li>
+      </ul>
+      <div style="height:1px;background:#DDDDDD;margin:16px 0;"></div>
+      <div class="card-label">Core Coursework</div>
+      <div style="margin-top:8px;">
+        <span class="edu-badge">Data Structures</span>
+        <span class="edu-badge">DBMS</span>
+        <span class="edu-badge">Web Development</span>
+        <span class="edu-badge">Cloud Computing</span>
+        <span class="edu-badge">IoT Fundamentals</span>
+        <span class="edu-badge">Software Engineering</span>
+        <span class="edu-badge">Operating Systems</span>
+      </div>
+    </div>
+  </div>
+</div><!-- /page-education -->
+
+<script>
+function showPage(name){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
