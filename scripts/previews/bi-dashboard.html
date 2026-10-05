@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BI Dashboard preview</title>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    body { margin: 0; font-family: "Source Sans 3", system-ui, sans-serif; background: #f0f4f8; color: #1e293b; }
+    .top { background: #fff; border-bottom: 1px solid #e2e8f0; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; }
+    .top h1 { font-size: 1.125rem; margin: 0; font-weight: 600; }
+    .pill { font-size: 0.75rem; background: #ecfdf5; color: #15803d; padding: 4px 10px; border-radius: 999px; font-weight: 600; }
+    .filters { display: flex; gap: 8px; padding: 16px 20px; flex-wrap: wrap; }
+    .filters select, .filters button { font: inherit; padding: 8px 12px; border-radius: 8px; border: 1px solid #cbd5e1; background: #fff; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 0 20px 20px; }
+    .card { background: #fff; border-radius: 12px; border: 1px solid #e2e8f0; padding: 12px; }
+    .card h2 { font-size: 0.8125rem; text-transform: uppercase; letter-spacing: 0.06em; color: #64748b; margin: 0 0 8px; }
+    svg { width: 100%; height: auto; display: block; }
+  </style>
+</head>
+<body>
+  <div class="top">
+    <h1>Operations BI · Drill-down</h1>
+    <span class="pill">API p95 · 186 ms · Redis</span>
+  </div>
+  <div class="filters">
+    <select aria-label="Region"><option>South region</option></select>
+    <select aria-label="Period"><option>Last 30 days</option></select>
+    <button type="button">Apply filters</button>
+  </div>
+  <div class="grid">
+    <div class="card">
+      <h2>Revenue trend</h2>
+      <svg viewBox="0 0 400 200" aria-hidden="true">
+        <polyline fill="none" stroke="#2563eb" stroke-width="3" points="20,150 100,120 180,130 260,80 380,60"/>
+        <polygon fill="rgb(37 99 235 / 0.15)" points="20,150 100,120 180,130 260,80 380,60 380,180 20,180"/>
+      </svg>
+    </div>
+    <div class="card">
+      <h2>Volume by category</h2>
+      <svg viewBox="0 0 400 200" aria-hidden="true">
+        <rect x="40" y="90" width="50" height="90" fill="#0d9488" rx="4"/>
+        <rect x="120" y="60" width="50" height="120" fill="#14b8a6" rx="4"/>
+        <rect x="200" y="100" width="50" height="80" fill="#0d9488" rx="4"/>
+        <rect x="280" y="75" width="50" height="105" fill="#14b8a6" rx="4"/>
+      </svg>
+    </div>
+    <div class="card">
+      <h2>Concurrent sessions</h2>
+      <svg viewBox="0 0 400 200" aria-hidden="true">
+        <polyline fill="none" stroke="#7c3aed" stroke-width="3" points="20,140 120,110 220,120 320,70 380,50"/>
+      </svg>
+    </div>
+    <div class="card">
+      <h2>Cache hit rate</h2>
+      <svg viewBox="0 0 400 200" aria-hidden="true">
+        <circle cx="200" cy="100" r="70" fill="none" stroke="#e2e8f0" stroke-width="16"/>
+        <circle cx="200" cy="100" r="70" fill="none" stroke="#16a34a" stroke-width="16" stroke-dasharray="345 440" transform="rotate(-90 200 100)"/>
+        <text x="200" y="105" text-anchor="middle" font-size="28" font-weight="600" fill="#16a34a">78%</text>
+      </svg>
+    </div>
+  </div>
+</body>
+</html>

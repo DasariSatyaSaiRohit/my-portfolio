@@ -1,544 +1,2098 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Satya Sai Rohit Dasari — Full Stack Engineer</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Roboto',sans-serif;}
-body{background:#F8F9FA;color:#333333;}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f7f2ea" />
+    <script>
+      (function () {
+        try {
+          var k = "theme";
+          var t = localStorage.getItem(k);
+          if (t !== "light" && t !== "dark") {
+            t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+          }
+          document.documentElement.setAttribute("data-theme", t);
+          var meta = document.querySelector('meta[name="theme-color"]');
+          if (meta) meta.setAttribute("content", t === "dark" ? "#1f1916" : "#f7f2ea");
+        } catch (e) {}
+      })();
+    </script>
+    <title>Satya Sai Rohit Dasari — Full Stack Developer</title>
+    <meta name="description" content="Portfolio of Satya Sai Rohit Dasari, a Full Stack Developer who builds React and Angular front ends and secure, scalable APIs with FastAPI, NestJS and Django REST Framework." />
+    <meta name="author" content="Satya Sai Rohit Dasari" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" id="site-canonical" href="/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Satya Sai Rohit Dasari — Full Stack Developer" />
+    <meta property="og:description" content="Full Stack Developer — React, Angular, NestJS, FastAPI, PostgreSQL and AI-powered features, built for production." />
+    <meta property="og:url" id="og-url" content="" />
+    <meta property="og:image" id="og-image" content="assets/og-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Satya Sai Rohit Dasari — Full Stack Developer" />
+    <meta name="twitter:description" content="Full Stack Developer — React, Angular, NestJS, FastAPI, PostgreSQL and AI-powered features, built for production." />
+    <meta name="twitter:image" id="twitter-image" content="assets/og-image.png" />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" as="image" href="assets/rohit_photo.jpg" fetchpriority="high" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+/* ── Tokens ── */
+:root {
+  color-scheme: light dark;
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Crimson Pro", Georgia, serif;
+  --font-ui: "Source Sans 3", system-ui, sans-serif;
 
-/* ── HEADER ── */
-#site-header{
-  position:sticky;top:0;z-index:999;
-  background:#FFFFFF;
-  box-shadow:0 2px 4px rgba(0,0,0,0.1);
-  height:70px;
-  display:flex;align-items:center;
-  padding:0 1.5rem;
-  gap:1.5rem;
-}
-#header-name{
-  font-size:16px;font-weight:700;color:#1A1A1A;
-  text-decoration:none;white-space:nowrap;
-  flex-shrink:0;
-}
-#header-name:hover{color:#0066FF;}
-#header-contacts{
-  display:flex;align-items:center;gap:10px;
-  flex-wrap:wrap;
-  margin-left:auto;
-}
-.contact-badge{
-  display:inline-flex;align-items:center;gap:5px;
-  padding:8px 12px;
-  background:#E6F0FF;color:#333333;
-  border-radius:6px;font-size:14px;
-  text-decoration:none;white-space:nowrap;
-  transition:background 0.2s,color 0.2s;
-}
-.contact-badge:hover{background:#0066FF;color:#FFFFFF;}
-.contact-badge.resume-badge{
-  background:#0066FF;color:#FFFFFF;font-weight:600;
-}
-.contact-badge.resume-badge:hover{background:#0047CC;color:#FFFFFF;}
-
-/* ── PAGES ── */
-.page{display:none;min-height:calc(100vh - 70px);}
-.page.active{display:block;}
-
-/* ── BACK BUTTON ── */
-.back-btn{
-  display:inline-flex;align-items:center;gap:6px;
-  color:#0066FF;font-size:14px;font-weight:600;
-  text-decoration:none;cursor:pointer;
-  padding:8px 0;margin:1.5rem 2rem;
-  background:none;border:none;
-}
-.back-btn:hover{color:#1A1A1A;text-decoration:underline;}
-
-/* ── HERO ── */
-#hero{
-  max-width:1200px;margin:0 auto;padding:60px 2rem;
-  display:grid;grid-template-columns:1fr auto;gap:48px;align-items:start;
-}
-.hero-left h1{font-size:48px;font-weight:700;color:#1A1A1A;line-height:1.1;margin-bottom:12px;}
-.hero-left h2{font-size:24px;font-weight:700;color:#0066FF;margin-bottom:16px;}
-.hero-left p{font-size:16px;color:#666666;line-height:1.7;margin-bottom:20px;max-width:560px;}
-.location-badge{
-  display:inline-flex;align-items:center;gap:6px;
-  background:#F0F0F0;color:#444;padding:6px 14px;border-radius:20px;
-  font-size:14px;text-decoration:none;margin-right:8px;
-}
-.relocation-badge{
-  display:inline-flex;align-items:center;gap:5px;
-  background:#E8F5E9;color:#27AE60;padding:6px 14px;border-radius:20px;
-  font-size:14px;font-weight:600;
-}
-.badges-row{margin-bottom:24px;display:flex;flex-wrap:wrap;gap:8px;}
-.spec-line{font-size:15px;color:#333;margin-bottom:20px;}
-.spec-line strong{color:#0066FF;}
-.skill-badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;}
-.skill-badge{
-  padding:0.4rem 0.9rem;background:#F8F9FA;border:0.5px solid #DDDDDD;
-  border-radius:5px;font-size:0.85rem;color:#333;cursor:default;
-  transition:background 0.2s,color 0.2s,border-color 0.2s;
-}
-.skill-badge:hover{background:#0066FF;color:#FFF;border-color:#0066FF;}
-.hero-photo{
-  width:220px;height:280px;border-radius:12px;
-  border:1px solid #DDDDDD;
-  box-shadow:0 4px 12px rgba(0,0,0,0.1);
-  background:#E6F0FF;object-fit:cover;flex-shrink:0;
+  --bg: #f7f2ea;
+  --bg-alt: #efe6d9;
+  --surface: #fffcf7;
+  --surface-glass: rgb(255 252 247 / 0.88);
+  --text: #2b261f;
+  --text-muted: #5c534a;
+  --accent: #9a3412;
+  --accent-hover: #7c2d12;
+  --accent-soft: rgb(120 53 15 / 0.12);
+  --border: #e0d5c8;
+  --focus: #b87a3d;
+  --success-bg: #ecfdf5;
+  --success-text: #15803d;
+  --shadow: 0 4px 24px rgb(43 38 31 / 0.08);
+  --shadow-hover: 0 12px 40px rgb(43 38 31 / 0.12);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --container: 72rem;
+  --header-h: 4.25rem;
+  --header-h-scrolled: 3.625rem;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.2, 0.64, 1);
+  --duration: 200ms;
+  --duration-reveal: 550ms;
 }
 
-/* ── SECTIONS ── */
-.section{padding:60px 2rem;max-width:1200px;margin:0 auto;}
-.section-title{font-size:28px;font-weight:700;color:#1A1A1A;margin-bottom:8px;}
-.section-subtitle{font-size:15px;color:#666;margin-bottom:28px;}
-.section-divider{height:2px;background:linear-gradient(90deg,#0066FF 0%,transparent 100%);margin-bottom:28px;}
-
-/* ── PROJECT CARDS ── */
-.cards-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;}
-.card{
-  background:#FFFFFF;border:1px solid #DDDDDD;border-radius:10px;
-  padding:1.5rem;box-shadow:0 2px 8px rgba(0,0,0,0.06);
-  transition:all 0.2s ease;
-}
-.card:hover{border-color:#0066FF;box-shadow:0 4px 16px rgba(0,102,255,0.1);transform:translateY(-2px);}
-.card-icon{
-  width:100%;height:80px;border-radius:8px;
-  background:linear-gradient(135deg,#E6F0FF 0%,#F0E6FF 100%);
-  display:flex;align-items:center;justify-content:center;
-  font-size:2rem;margin-bottom:1rem;
-}
-.card-title{font-size:20px;font-weight:700;color:#1A1A1A;margin-bottom:4px;}
-.card-year{font-size:12px;color:#999;margin-bottom:12px;}
-.card-label{font-size:12px;font-weight:600;color:#999;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;}
-.card-desc{font-size:14px;color:#666;line-height:1.7;margin-bottom:14px;}
-.card-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;}
-.card-tag{
-  padding:3px 10px;background:#F0F4FF;color:#0066FF;
-  border-radius:4px;font-size:12px;font-weight:500;
-}
-.card-link{font-size:14px;font-weight:600;color:#0066FF;text-decoration:none;cursor:pointer;}
-.card-link:hover{color:#1A1A1A;text-decoration:underline;}
-.view-all-btn{
-  display:inline-block;margin-top:2rem;
-  padding:12px 32px;background:#0066FF;color:#FFF;
-  border-radius:8px;font-size:16px;font-weight:700;
-  text-decoration:none;cursor:pointer;border:none;
-  transition:transform 0.2s,box-shadow 0.2s;
-}
-.view-all-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,102,255,0.3);}
-
-/* ── EXP / EDU CARDS ── */
-.exp-card{
-  background:#FAFAFA;border:1px solid #DDDDDD;border-radius:10px;
-  padding:1.5rem;margin-bottom:1.5rem;
-}
-.exp-card:hover{border-color:#0066FF;}
-.exp-role{font-size:18px;font-weight:700;color:#1A1A1A;margin-bottom:2px;}
-.exp-company{font-size:16px;font-weight:600;color:#0066FF;margin-bottom:2px;}
-.exp-meta{font-size:14px;color:#666;margin-bottom:12px;}
-.exp-desc{font-size:0.95rem;color:#666;line-height:1.6;}
-
-/* ── FULL PROJECT PAGE ── */
-.full-card{
-  background:#FFF;border:1px solid #DDDDDD;border-radius:10px;
-  padding:1.5rem;margin-bottom:1.5rem;
-  transition:all 0.2s ease;
-}
-.full-card:hover{border-color:#0066FF;box-shadow:0 4px 16px rgba(0,102,255,0.08);}
-.full-card-title{font-size:24px;font-weight:700;color:#1A1A1A;margin-bottom:4px;}
-.bullets{list-style:none;padding:0;margin:8px 0 14px;}
-.bullets li{padding:4px 0 4px 1.5rem;position:relative;font-size:14px;color:#333;line-height:1.6;}
-.bullets li::before{content:'▸';color:#0066FF;position:absolute;left:0;}
-.full-card-links{display:flex;gap:12px;margin-top:12px;}
-.full-link-btn{
-  padding:8px 20px;background:#0066FF;color:#FFF;border-radius:6px;
-  font-size:14px;font-weight:600;text-decoration:none;
-  transition:background 0.2s;
-}
-.full-link-btn:hover{background:#0047CC;}
-
-/* ── TIMELINE PAGE ── */
-.page-inner{max-width:900px;margin:0 auto;padding:0 2rem 60px;}
-.page-title{font-size:32px;font-weight:700;color:#1A1A1A;margin-bottom:8px;padding-top:2rem;}
-.page-rule{height:2px;background:linear-gradient(90deg,#0066FF,transparent);margin-bottom:32px;}
-
-/* ── EDU BADGES ── */
-.edu-badge{
-  padding:3px 10px;background:#E6F0FF;color:#0066FF;
-  border-radius:4px;font-size:12px;font-weight:500;
-  display:inline-block;margin:3px;
-}
-.gpa-badge{
-  display:inline-block;padding:4px 12px;background:#F0F0F0;
-  color:#333;border-radius:6px;font-size:14px;font-weight:700;
-  margin:4px 0 12px;
+[data-theme="dark"] {
+  --bg: #1f1916;
+  --bg-alt: #2b261f;
+  --surface: #322c27;
+  --surface-glass: rgb(50 44 39 / 0.9);
+  --text: #f5ebe0;
+  --text-muted: #b8a99a;
+  --accent: #d4a574;
+  --accent-hover: #e8bc8a;
+  --accent-soft: rgb(120 53 15 / 0.35);
+  --border: #4a423c;
+  --focus: #d4a574;
+  --success-bg: rgb(21 128 61 / 0.15);
+  --success-text: #86efac;
+  --shadow: 0 4px 24px rgb(0 0 0 / 0.35);
+  --shadow-hover: 0 12px 40px rgb(0 0 0 / 0.45);
 }
 
-/* ── RESPONSIVE ── */
-@media(max-width:768px){
-  #hero{grid-template-columns:1fr;gap:32px;}
-  .hero-photo{width:180px;height:230px;margin:0 auto;}
-  .hero-left h1{font-size:34px;}
-  .cards-grid{grid-template-columns:1fr;}
-  #header-contacts{gap:6px;}
-  .contact-badge{padding:6px 9px;font-size:12px;}
-  #site-header{height:auto;padding:12px 1rem;flex-wrap:wrap;}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1f1916;
+    --bg-alt: #2b261f;
+    --surface: #322c27;
+    --surface-glass: rgb(50 44 39 / 0.9);
+    --text: #f5ebe0;
+    --text-muted: #b8a99a;
+    --accent: #d4a574;
+    --accent-hover: #e8bc8a;
+    --accent-soft: rgb(120 53 15 / 0.35);
+    --border: #4a423c;
+    --focus: #d4a574;
+    --success-bg: rgb(21 128 61 / 0.15);
+    --success-text: #86efac;
+    --shadow: 0 4px 24px rgb(0 0 0 / 0.35);
+    --shadow-hover: 0 12px 40px rgb(0 0 0 / 0.45);
+  }
 }
-</style>
-</head>
-<body>
 
-<!-- ══ STICKY HEADER ══ -->
-<header id="site-header">
-  <a href="#" id="header-name" onclick="showPage('home');return false;">Satya Sai Rohit Dasari</a>
-  <nav id="header-contacts">
-    <a class="contact-badge" href="tel:+918121122896">📱 +91 8121122896</a>
-    <a class="contact-badge" href="mailto:dasarisatyasairohit@gmail.com">📧 dasarisatyasairohit@gmail.com</a>
-    <a class="contact-badge" href="https://www.linkedin.com/in/satya-sai-rohit-dasari-547250286/" target="_blank">💼 LinkedIn</a>
-    <a class="contact-badge resume-badge" href="assets\Dasari Satya Sai Rohit Resume.pdf" download="Dasari Satya Sai Rohit Resume.pdf">⬇ Download Resume</a>
-    <a class="contact-badge" href="https://github.com/DasariSatyaSaiRohit" target="_blank">⚙️ GitHub</a>
-  </nav>
-</header>
+/* ── Base ── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
-<!-- ══════════════════════════════════════════ PAGE 1: HOME ══════════════════════════════════════════ -->
-<div id="page-home" class="page active">
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + 0.75rem);
+}
 
-  <!-- HERO -->
-  <section id="hero">
-    <div class="hero-left">
-      <h1>Satya Sai Rohit Dasari</h1>
-      <h2>Full Stack Engineer</h2>
-      <p>Backend-focused engineer with production experience building high-performance APIs, BI dashboards, and microservices. Specialised in Python, FastAPI, and async architectures that handle real-world scale.</p>
-      <div class="badges-row">
-        <a class="location-badge" href="#">📍 Visakhapatnam, Andhra Pradesh, India</a>
-        <span class="relocation-badge">✓ Open to Relocation</span>
-      </div>
-      <div class="skill-badges">
-        <span class="skill-badge">Python</span>
-        <span class="skill-badge">FastAPI</span>
-        <span class="skill-badge">React</span>
-        <span class="skill-badge">Angular</span>
-        <span class="skill-badge">NestJS</span>
-        <span class="skill-badge">PostgreSQL</span>
-        <span class="skill-badge">Redis</span>
-        <span class="skill-badge">Docker</span>
-      </div>
-    </div>
-    <img class="hero-photo" src="assets\rohit_photo.jpg" alt="Satya Sai Rohit Dasari"
-         onerror="this.style.background='#E6F0FF';this.removeAttribute('src')"/>
-  </section>
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
 
-  <!-- PROJECTS PREVIEW -->
-  <div style="background:#F0F4FF;padding:2px 0;">
-  <div class="section">
-    <h2 class="section-title">Featured Projects</h2>
-    <p class="section-subtitle">Building things that actually solve problems</p>
-    <div class="section-divider"></div>
-    <div class="cards-grid">
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 1.05vw, 1.0625rem);
+  line-height: 1.65;
+  color: var(--text);
+  background: var(--bg);
+  transition: background-color var(--duration) var(--ease-out), color var(--duration) var(--ease-out);
+}
 
-      <div class="card">
-        <div class="card-icon">🧠</div>
-        <div class="card-title">QueryMind</div>
-        <div class="card-year">2025</div>
-        <div class="card-label">Problem It Solves</div>
-        <div class="card-desc">Converts natural language to SQL across PostgreSQL, MySQL, and SQLite with enterprise-grade security — JWT auth, SELECT-only enforcement, and Redis schema caching for sub-200ms responses.</div>
-        <div class="card-label">Skills Used</div>
-        <div class="card-tags">
-          <span class="card-tag">Python</span><span class="card-tag">FastAPI</span>
-          <span class="card-tag">React</span><span class="card-tag">NestJS</span>
-          <span class="card-tag">PostgreSQL</span><span class="card-tag">Redis</span>
-          <span class="card-tag">RabbitMQ</span><span class="card-tag">Docker</span>
+body.nav-open {
+  overflow: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--accent);
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 10000;
+  padding: 0.75rem 1rem;
+  background: var(--surface);
+  color: var(--text);
+  font-family: var(--font-ui);
+}
+
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+}
+
+.container {
+  width: min(100% - clamp(1.5rem, 4vw, 3rem), var(--container));
+  margin-inline: auto;
+}
+
+/* ── Typography ── */
+.display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.5rem, 5vw, 3.75rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.5rem;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  line-height: 1.15;
+  margin: 0 0 0.5rem;
+}
+
+.section-lead {
+  color: var(--text-muted);
+  max-width: 38rem;
+  margin: 0 0 2rem;
+}
+
+.text-link {
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: var(--accent);
+  text-decoration: none;
+  background: linear-gradient(currentColor, currentColor) left bottom / 0 1px no-repeat;
+  transition: background-size var(--duration) var(--ease-out), color var(--duration);
+}
+
+.text-link:hover {
+  color: var(--accent-hover);
+  background-size: 100% 1px;
+}
+
+/* ── Buttons ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  padding: 0.65rem 1.25rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform var(--duration) var(--ease-out), box-shadow var(--duration), background var(--duration);
+}
+
+.btn--primary {
+  background: var(--accent);
+  color: #fffcf7;
+  border-color: var(--accent);
+}
+
+[data-theme="dark"] .btn--primary {
+  color: #1f1916;
+}
+
+.btn--primary:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+.btn--secondary {
+  background: transparent;
+  color: var(--text);
+  border-color: var(--border);
+}
+
+.btn--secondary:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.btn--ghost {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.btn--disabled {
+  opacity: 0.55;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn:hover {
+    transform: none;
+  }
+}
+
+/* ── Header ── */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 101;
+  height: 3px;
+  width: 100%;
+  transform-origin: left center;
+  transform: scaleX(0);
+  background: linear-gradient(90deg, var(--accent), var(--focus));
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--duration) var(--ease-out);
+}
+
+.scroll-progress.is-active {
+  opacity: 1;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: var(--header-h);
+  border-bottom: 1px solid transparent;
+  background: var(--surface-glass);
+  backdrop-filter: blur(12px);
+  transition:
+    height 320ms var(--ease-out),
+    box-shadow 320ms var(--ease-out),
+    border-color 320ms var(--ease-out),
+    background-color var(--duration) var(--ease-out);
+}
+
+.site-header.is-scrolled {
+  height: var(--header-h-scrolled);
+  border-bottom-color: var(--border);
+  box-shadow: var(--shadow);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  gap: 1rem;
+}
+
+.site-logo {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--text);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.site-logo:hover {
+  color: var(--accent);
+}
+
+.site-nav {
+  display: none;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.site-nav a {
+  font-family: var(--font-ui);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-sm);
+  position: relative;
+}
+
+.site-nav a:hover {
+  color: var(--text);
+}
+
+.site-nav a.is-active {
+  color: var(--accent);
+}
+
+.site-nav a.is-active::after {
+  content: "";
+  position: absolute;
+  left: 0.75rem;
+  right: 0.75rem;
+  bottom: 0.25rem;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 1px;
+  transform: scaleX(1);
+  transition: transform 280ms var(--ease-spring);
+}
+
+.site-nav a:not(.is-active)::after {
+  content: "";
+  position: absolute;
+  left: 0.75rem;
+  right: 0.75rem;
+  bottom: 0.25rem;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 1px;
+  transform: scaleX(0);
+  transition: transform 280ms var(--ease-out);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.nav-toggle {
+  display: inline-flex;
+}
+
+.header-actions .btn--primary {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .site-nav {
+    display: flex;
+  }
+
+  .nav-toggle {
+    display: none;
+  }
+
+  .header-actions .btn--primary {
+    display: inline-flex;
+  }
+}
+
+.nav-panel {
+  position: fixed;
+  inset: var(--header-h) 0 0;
+  z-index: 99;
+  background: var(--bg);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border-top: 1px solid var(--border);
+  opacity: 0;
+  transform: translateY(-12px);
+  visibility: hidden;
+  transition:
+    opacity 280ms var(--ease-out),
+    transform 320ms var(--ease-out),
+    visibility 0s linear 320ms;
+}
+
+.nav-panel.is-open {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+  transition:
+    opacity 280ms var(--ease-out),
+    transform 320ms var(--ease-spring),
+    visibility 0s;
+}
+
+.nav-panel[hidden] {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-panel {
+    transform: none;
+    transition: none;
+  }
+}
+
+.nav-panel a {
+  font-family: var(--font-ui);
+  font-size: 1.125rem;
+  padding: 0.75rem;
+  color: var(--text);
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+}
+
+.nav-panel a:hover {
+  background: var(--accent-soft);
+}
+
+/* ── Hero ── */
+.hero {
+  padding: clamp(3rem, 8vw, 5rem) 0 clamp(2.5rem, 6vw, 4rem);
+  scroll-margin-top: var(--header-h);
+}
+
+.hero__grid {
+  display: grid;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .hero__grid {
+    grid-template-columns: 1fr minmax(220px, 280px);
+  }
+}
+
+.hero__role {
+  font-family: var(--font-ui);
+  font-size: clamp(1.125rem, 2vw, 1.35rem);
+  font-weight: 600;
+  color: var(--accent);
+  margin: 0 0 1rem;
+}
+
+.hero__intro {
+  color: var(--text-muted);
+  max-width: 36rem;
+  margin: 0 0 1.5rem;
+}
+
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.75rem;
+}
+
+.chip {
+  font-family: var(--font-ui);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+}
+
+.chip--status {
+  background: var(--success-bg);
+  color: var(--success-text);
+  border-color: transparent;
+}
+
+.hero__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.hero__photo-wrap {
+  position: relative;
+  margin-inline: auto;
+  max-width: 280px;
+}
+
+.hero__photo {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  background: var(--bg-alt);
+}
+
+.hero__photo-fallback {
+  display: none;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+}
+
+.hero__photo-wrap.is-fallback .hero__photo {
+  display: none;
+}
+
+.hero__photo-wrap.is-fallback .hero__photo-fallback {
+  display: block;
+}
+
+.hero-entrance {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: rise-in 400ms var(--ease-out) forwards;
+}
+
+.hero-entrance:nth-child(2) {
+  animation-delay: 80ms;
+}
+
+.hero-entrance:nth-child(3) {
+  animation-delay: 160ms;
+}
+
+.hero-entrance:nth-child(4) {
+  animation-delay: 240ms;
+}
+
+.hero-entrance:nth-child(5) {
+  animation-delay: 320ms;
+}
+
+.hero__photo-wrap.hero-entrance {
+  opacity: 0;
+  transform: translateY(20px) scale(0.98);
+  animation: rise-in-photo 650ms var(--ease-out) 120ms forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-entrance {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+
+  .hero__photo-wrap.hero-entrance {
+    animation: none;
+  }
+}
+
+@keyframes rise-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes rise-in-photo {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ── Sections ── */
+.section {
+  padding: clamp(3rem, 7vw, 5rem) 0;
+  scroll-margin-top: var(--header-h);
+}
+
+.section--alt {
+  background: var(--bg-alt);
+}
+
+/* ── Work grid ── */
+.work-section {
+  display: grid;
+  gap: 2rem;
+}
+
+@media (min-width: 1024px) {
+  .work-section {
+    grid-template-columns: minmax(11rem, 16rem) 1fr;
+    gap: clamp(2rem, 4vw, 3.5rem);
+    align-items: start;
+  }
+
+  .work-section__intro {
+    position: sticky;
+    top: calc(var(--header-h) + 1.25rem);
+    padding-bottom: 1rem;
+    transition: top 320ms var(--ease-out);
+  }
+
+  :root:has(.site-header.is-scrolled) .work-section__intro {
+    top: calc(var(--header-h-scrolled) + 1.25rem);
+  }
+
+  .work-section__intro .section-lead {
+    margin-bottom: 0;
+  }
+}
+
+.work-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .work-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .project-card--featured {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 0;
+  }
+
+  .project-card--featured .project-card__media img {
+    height: 100%;
+    min-height: 280px;
+    object-fit: cover;
+  }
+}
+
+.project-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition:
+    transform 320ms var(--ease-out),
+    box-shadow 320ms var(--ease-out),
+    border-color var(--duration);
+}
+
+.project-card.is-visible:hover {
+  border-color: rgb(154 52 18 / 0.25);
+}
+
+[data-theme="dark"] .project-card.is-visible:hover {
+  border-color: rgb(212 165 116 / 0.35);
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-card:hover {
+    transform: none;
+  }
+}
+
+.project-card__media {
+  display: block;
+  overflow: hidden;
+  background: var(--bg-alt);
+}
+
+.project-card__media img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: transform 350ms var(--ease-out);
+}
+
+.project-card:hover .project-card__media img {
+  transform: scale(1.03);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-card:hover .project-card__media img {
+    transform: none;
+  }
+}
+
+.project-card__body {
+  padding: 1.25rem 1.5rem 1.5rem;
+}
+
+.project-card__meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.35rem;
+}
+
+.project-card__title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.project-card__title a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.project-card__title a:hover {
+  color: var(--accent);
+}
+
+.project-card__year {
+  font-family: var(--font-ui);
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+.project-card__subtitle {
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  color: var(--accent);
+  margin: 0 0 0.5rem;
+}
+
+.project-card__summary {
+  color: var(--text-muted);
+  margin: 0 0 1rem;
+  font-size: 0.975rem;
+}
+
+.tag-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.tag-list li {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+/* ── Skills ── */
+.skills-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .skills-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.skill-group {
+  transition: transform 320ms var(--ease-out);
+}
+
+.skill-group.is-visible:hover {
+  transform: translateY(-2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skill-group.is-visible:hover {
+    transform: none;
+  }
+}
+
+.skill-group h3 {
+  font-family: var(--font-ui);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin: 0 0 0.75rem;
+}
+
+/* ── Timeline cards ── */
+.experience-layout {
+  display: grid;
+  gap: 1.25rem;
+}
+
+@media (min-width: 900px) {
+  .experience-layout {
+    grid-template-columns: minmax(10rem, 14rem) 1fr;
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+    align-items: start;
+  }
+
+  .experience-layout__aside {
+    position: sticky;
+    top: calc(var(--header-h) + 1.25rem);
+    transition: top 320ms var(--ease-out);
+  }
+
+  :root:has(.site-header.is-scrolled) .experience-layout__aside {
+    top: calc(var(--header-h-scrolled) + 1.25rem);
+  }
+
+  .experience-layout__aside .section-lead {
+    margin-bottom: 0;
+    font-size: 0.975rem;
+  }
+}
+
+.timeline-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem 1.75rem;
+  box-shadow: var(--shadow);
+  transition: transform 320ms var(--ease-out), box-shadow 320ms var(--ease-out);
+}
+
+.timeline-card.is-visible:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .timeline-card.is-visible:hover {
+    transform: none;
+  }
+}
+
+.timeline-card + .timeline-card {
+  margin-top: 1.25rem;
+}
+
+.timeline-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  margin: 0 0 0.25rem;
+}
+
+.timeline-card .company {
+  font-family: var(--font-ui);
+  font-weight: 600;
+  color: var(--accent);
+  margin: 0 0 0.35rem;
+}
+
+.timeline-card .meta {
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin: 0 0 1rem;
+}
+
+.timeline-card ul {
+  margin: 0;
+  padding-left: 1.15rem;
+  color: var(--text-muted);
+}
+
+.timeline-card li {
+  margin-bottom: 0.35rem;
+}
+
+.timeline-card li strong {
+  color: var(--text);
+}
+
+.gpa-pill {
+  display: inline-block;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 0.875rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-sm);
+  background: var(--accent-soft);
+  color: var(--accent);
+  margin: 0.5rem 0 1rem;
+}
+
+/* ── Contact ── */
+.contact-block {
+  text-align: center;
+  max-width: 32rem;
+  margin-inline: auto;
+}
+
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.social-row {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.social-row a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  color: var(--text);
+  background: var(--surface);
+}
+
+.social-row a:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ── Footer ── */
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 1.5rem 0 2rem;
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.site-footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+/* ── Reveal (visible by default; JS adds .js-ready to animate) ── */
+[data-reveal] {
+  opacity: 1;
+  transform: none;
+}
+
+.js-ready [data-reveal]:not(.is-visible) {
+  opacity: 0;
+  transform: translateY(20px);
+  filter: blur(4px);
+  transition:
+    opacity var(--duration-reveal) var(--ease-out),
+    transform var(--duration-reveal) var(--ease-out),
+    filter var(--duration-reveal) var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.js-ready [data-reveal][data-reveal="fade"]:not(.is-visible) {
+  transform: none;
+  filter: none;
+}
+
+.js-ready [data-reveal][data-reveal="slide-left"]:not(.is-visible) {
+  transform: translateX(-24px);
+  filter: none;
+}
+
+.js-ready [data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0) translateX(0);
+  filter: blur(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-progress {
+    display: none;
+  }
+
+  .js-ready [data-reveal] {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+}
+
+/* ── Dialog ── */
+.project-dialog {
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 0;
+  max-width: min(44rem, 92vw);
+  max-height: 90vh;
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow-hover);
+}
+
+.project-dialog::backdrop {
+  background: rgb(31 25 22 / 0.55);
+  backdrop-filter: blur(4px);
+}
+
+.project-dialog__inner {
+  padding: 1.5rem 1.75rem 1.75rem;
+  overflow: auto;
+  max-height: 90vh;
+}
+
+.project-dialog__close {
+  position: sticky;
+  top: 0;
+  float: right;
+  margin: 0 0 0.5rem 0.5rem;
+  z-index: 1;
+}
+
+.case-study__header {
+  margin-bottom: 1rem;
+}
+
+.case-study__eyebrow {
+  font-family: var(--font-ui);
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  margin: 0 0 0.25rem;
+}
+
+.case-study__title {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  margin: 0;
+}
+
+.case-study__gallery {
+  margin: 0 0 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: var(--bg-alt);
+}
+
+.case-study-carousel {
+  position: relative;
+}
+
+.case-study-carousel__viewport {
+  overflow: hidden;
+}
+
+.case-study-carousel__track {
+  display: flex;
+  transition: transform 350ms var(--ease-out);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .case-study-carousel__track {
+    transition: none;
+  }
+}
+
+.case-study-carousel__slide {
+  flex: 0 0 100%;
+  margin: 0;
+}
+
+.case-study-carousel__slide img {
+  width: 100%;
+  height: auto;
+  max-height: min(420px, 55vh);
+  object-fit: cover;
+  display: block;
+}
+
+.case-study-carousel__caption {
+  font-family: var(--font-ui);
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  padding: 0.5rem 0.75rem;
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.case-study-carousel__controls {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: none;
+  padding: 0 0.35rem;
+}
+
+.case-study-carousel__btn {
+  pointer-events: auto;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--surface-glass);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 1.25rem;
+  line-height: 1;
+  backdrop-filter: blur(8px);
+}
+
+.case-study-carousel__btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.case-study-carousel__btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.case-study-carousel__dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.5rem;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+}
+
+.case-study-carousel__dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 999px;
+  border: none;
+  padding: 0;
+  background: var(--border);
+  cursor: pointer;
+}
+
+.case-study-carousel__dot.is-active {
+  background: var(--accent);
+  width: 1.25rem;
+}
+
+.case-study__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.case-study__notice {
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin: 1.25rem 0 0;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--bg-alt);
+}
+
+.project-dialog h3 {
+  font-family: var(--font-ui);
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin: 1.25rem 0 0.5rem;
+}
+
+.project-dialog section:first-of-type h3 {
+  margin-top: 0;
+}
+
+.project-dialog ul {
+  margin: 0;
+  padding-left: 1.15rem;
+  color: var(--text-muted);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+    </style>
+    <script type="application/ld+json" id="person-ld">
+      {"@context":"https://schema.org","@type":"Person","name":"Satya Sai Rohit Dasari","jobTitle":"Full Stack Developer","email":"dasarisatyasairohit@gmail.com","url":"/","sameAs":["https://github.com/DasariSatyaSaiRohit","https://www.linkedin.com/in/satya-sai-rohit-dasari-547250286/"]}
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+
+    <header class="site-header" id="site-header">
+      <div class="container site-header__inner">
+        <a class="site-logo" href="#top">Satya Sai Rohit Dasari</a>
+        <nav class="site-nav" aria-label="Primary">
+          <a href="#work" data-section="work">Work</a>
+          <a href="#about" data-section="about">About</a>
+          <a href="#experience" data-section="experience">Experience</a>
+          <a href="#education" data-section="education">Education</a>
+          <a href="#contact" data-section="contact">Contact</a>
+        </nav>
+        <div class="header-actions">
+          <button type="button" class="icon-btn" id="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <circle cx="12" cy="12" r="5" /><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+            </svg>
+          </button>
+          <a class="btn btn--primary" data-resume-link download="Dasari Satya Sai Rohit Resume BE.pdf">Resume</a>
+          <button type="button" class="icon-btn nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-panel" aria-label="Open menu">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+          </button>
         </div>
-        <a class="card-link" onclick="showPage('projects');return false;" href="#">View Details →</a>
       </div>
+    </header>
 
-      <div class="card">
-        <div class="card-icon">📄</div>
-        <div class="card-title">ResumeJobMatcher</div>
-        <div class="card-year">2025</div>
-        <div class="card-label">Problem It Solves</div>
-        <div class="card-desc">Browser-only resume parser with AI job matching — parses PDF/DOCX, sends to Claude API, returns 15+ matched job listings with apply links. Zero backend required.</div>
-        <div class="card-label">Skills Used</div>
-        <div class="card-tags">
-          <span class="card-tag">Angular 17</span><span class="card-tag">TypeScript</span>
-          <span class="card-tag">Tailwind CSS</span><span class="card-tag">Anthropic API</span>
-          <span class="card-tag">PDF.js</span><span class="card-tag">Mammoth.js</span>
+    <nav id="nav-panel" class="nav-panel" hidden aria-label="Mobile">
+      <a href="#work" data-section="work">Work</a>
+      <a href="#about" data-section="about">About</a>
+      <a href="#experience" data-section="experience">Experience</a>
+      <a href="#education" data-section="education">Education</a>
+      <a href="#contact" data-section="contact">Contact</a>
+      <a class="btn btn--primary" data-resume-link download>Download resume</a>
+    </nav>
+
+    <main id="main">
+      <section id="top" class="hero" aria-labelledby="hero-heading">
+        <div class="container hero__grid">
+          <div>
+            <p class="hero__role hero-entrance">Full Stack Developer</p>
+            <h1 id="hero-heading" class="display hero-entrance">I build full stack web apps, from polished interfaces to fast, secure APIs.</h1>
+            <p class="hero__intro hero-entrance">
+              Hi, I&rsquo;m Rohit. I&rsquo;m a Full Stack Developer with about two years of experience at Infyshine and Akrivia. I work across
+              React and Angular front ends, NestJS, FastAPI and Django REST back ends, and PostgreSQL, Redis and RabbitMQ, and I add AI features
+              where they genuinely help users.
+            </p>
+            <div class="chip-row hero-entrance">
+              <span class="chip">Visakhapatnam, India</span>
+              <span class="chip">React &middot; Angular &middot; NestJS &middot; FastAPI</span>
+              <span class="chip chip--status">Open to relocation</span>
+            </div>
+            <div class="hero__cta hero-entrance">
+              <a class="btn btn--primary" href="#work">View work</a>
+              <a class="btn btn--secondary" data-resume-link download>Download resume</a>
+            </div>
+          </div>
+          <div class="hero__photo-wrap hero-entrance" id="hero-photo-wrap">
+            <img class="hero__photo" src="assets/rohit_photo.jpg" alt="Portrait of Satya Sai Rohit Dasari" width="280" height="350" decoding="async" fetchpriority="high" onerror="document.getElementById('hero-photo-wrap').classList.add('is-fallback')" />
+            <img class="hero__photo-fallback" src="assets/photo-placeholder.svg" alt="" width="280" height="350" />
+          </div>
         </div>
-        <a class="card-link" onclick="showPage('projects');return false;" href="#">View Details →</a>
-      </div>
+      </section>
 
-      <div class="card">
-        <div class="card-icon">📊</div>
-        <div class="card-title">Advanced BI Dashboard System</div>
-        <div class="card-year">2024</div>
-        <div class="card-label">Problem It Solves</div>
-        <div class="card-desc">Custom dashboards with 5+ drill-down Highcharts visualisations and sub-200ms API responses via Redis caching, built for concurrent user loads of 50+ with 100k+ daily requests.</div>
-        <div class="card-label">Skills Used</div>
-        <div class="card-tags">
-          <span class="card-tag">Angular</span><span class="card-tag">Highcharts</span>
-          <span class="card-tag">Redux</span><span class="card-tag">MySQL</span>
-          <span class="card-tag">Redis</span><span class="card-tag">Jest</span>
+      <section id="work" class="section section--alt" aria-labelledby="work-heading">
+        <div class="container work-section">
+          <div class="work-section__intro">
+            <h2 id="work-heading" class="section-title" data-reveal>Selected work</h2>
+            <p class="section-lead" data-reveal data-reveal="fade">Real projects, each with the problem I solved, how I approached it, and the results.</p>
+          </div>
+          <div id="work-grid" class="work-grid" data-reveal-stagger aria-busy="true" aria-label="Loading projects"></div>
+          <noscript>
+            <p class="section-lead">Enable JavaScript to browse project case studies, or view repositories on <a href="https://github.com/DasariSatyaSaiRohit">GitHub</a>.</p>
+          </noscript>
         </div>
-        <a class="card-link" onclick="showPage('projects');return false;" href="#">View Details →</a>
-      </div>
+      </section>
 
-      <div class="card">
-        <div class="card-icon">📋</div>
-        <div class="card-title">Bulk Excel Workflow Engine</div>
-        <div class="card-year">2024</div>
-        <div class="card-label">Problem It Solves</div>
-        <div class="card-desc">Handles 1,000+ row Excel uploads with row-level validation and RabbitMQ async integration, ensuring ACID consistency across microservice databases during bulk operations.</div>
-        <div class="card-label">Skills Used</div>
-        <div class="card-tags">
-          <span class="card-tag">ExcelJS</span><span class="card-tag">Node.js</span>
-          <span class="card-tag">RabbitMQ</span><span class="card-tag">PostgreSQL</span>
-          <span class="card-tag">MongoDB</span>
+      <section id="about" class="section" aria-labelledby="about-heading">
+        <div class="container">
+          <h2 id="about-heading" class="section-title" data-reveal>About</h2>
+          <p class="section-lead" data-reveal>
+            I&rsquo;m Satya Sai Rohit Dasari, a Full Stack Developer who enjoys owning a feature from start to finish: the database schema,
+            the API, and the screen the user actually sees. At Infyshine, I build secure REST APIs, real-time features and React interfaces
+            for an online exam and proctoring platform. At Akrivia, I built Angular dashboards and high-volume data workflows. In my own
+            projects, I explore AI tools such as natural-language-to-SQL and browser-only resume matching.
+          </p>
+          <div class="skills-grid" data-reveal-stagger>
+            <div class="skill-group" data-reveal data-reveal="slide-left">
+              <h3>Frontend</h3>
+              <ul class="tag-list"><li>React</li><li>Angular</li><li>TypeScript</li><li>JavaScript</li><li>HTML &amp; CSS</li><li>Tailwind CSS</li><li>Highcharts</li></ul>
+            </div>
+            <div class="skill-group" data-reveal data-reveal="slide-left">
+              <h3>Backend</h3>
+              <ul class="tag-list"><li>Python</li><li>FastAPI</li><li>NestJS</li><li>Django REST Framework</li><li>REST APIs</li><li>WebSockets</li><li>JWT &amp; RBAC</li></ul>
+            </div>
+            <div class="skill-group" data-reveal data-reveal="slide-left">
+              <h3>Data &amp; AI</h3>
+              <ul class="tag-list"><li>PostgreSQL</li><li>MySQL</li><li>MongoDB</li><li>Redis</li><li>pgvector</li><li>Gemini</li><li>Claude API</li><li>Ollama</li></ul>
+            </div>
+            <div class="skill-group" data-reveal data-reveal="slide-left">
+              <h3>DevOps &amp; Tools</h3>
+              <ul class="tag-list"><li>Docker</li><li>Jenkins</li><li>RabbitMQ</li><li>Celery</li><li>Git</li><li>Postman</li><li>Jira</li></ul>
+            </div>
+          </div>
         </div>
-        <a class="card-link" onclick="showPage('projects');return false;" href="#">View Details →</a>
+      </section>
+
+      <section id="experience" class="section section--alt" aria-labelledby="experience-heading">
+        <div class="container experience-layout">
+          <aside class="experience-layout__aside" aria-label="Experience overview">
+            <h2 id="experience-heading" class="section-title" data-reveal>Experience</h2>
+            <p class="section-lead" data-reveal data-reveal="fade">Two years building production APIs, real-time systems and data-heavy front ends.</p>
+          </aside>
+          <div class="experience-layout__main" data-reveal-stagger>
+          <article class="timeline-card" data-reveal>
+            <h3>Software Engineer (Full Stack)</h3>
+            <p class="company">Infyshine</p>
+            <p class="meta">Visakhapatnam, India · June 2026 – Present</p>
+            <ul>
+              <li>Build and secure production <strong>REST APIs</strong> with <strong>JWT access/refresh tokens</strong> and <strong>role-based access control</strong>, so each user role sees only what it should.</li>
+              <li>Designed <strong>WebSocket-based real-time sessions</strong> for an online examination and live-proctoring platform that stay reliable under heavy concurrent use.</li>
+              <li>Built a <strong>KYC verification module</strong> that combines face recognition (face embeddings) with OCR to extract and verify identity documents.</li>
+              <li>Integrated <strong>Razorpay</strong> subscription payments and linked each user&rsquo;s role and feature access to their active subscription.</li>
+              <li>Built the <strong>role-based assistant chatbot</strong> using RAG with <strong>pgvector</strong> and <strong>Gemini</strong>, with Gemini security checks before sensitive data or API operations run.</li>
+              <li>Added <strong>Gemini-generated, resume-based interview questions</strong> and built the matching <strong>React</strong> screens end to end.</li>
+              <li>Moved long-running work to <strong>Celery and Redis</strong> background workers, which lowers request latency and keeps the platform stable at peak times.</li>
+              <li>Tuned <strong>PostgreSQL</strong> schemas and indexes at production scale, and added <strong>MinIO</strong> object storage and <strong>Alembic</strong> migrations for safer deployments.</li>
+              <li>Set up a <strong>Jenkins CI/CD pipeline</strong> covering automated tests, <strong>SonarQube</strong> code-quality checks, database migrations and deployment, with services running in <strong>Docker Compose</strong> behind a reverse proxy.</li>
+            </ul>
+            <ul class="tag-list" style="margin-top: 1rem">
+              <li>React</li><li>Python</li><li>FastAPI</li><li>PostgreSQL</li><li>Redis</li><li>Celery</li><li>WebSockets</li><li>Docker</li><li>Jenkins</li><li>Gemini</li>
+            </ul>
+          </article>
+
+          <article class="timeline-card" data-reveal>
+            <h3>Software Development Engineer</h3>
+            <p class="company">Akrivia Automation</p>
+            <p class="meta">Visakhapatnam, India · July 2024 – May 2026 · Intern, then full-time Engineer from August 2025</p>
+            <ul>
+              <li>Built interactive <strong>BI dashboards</strong> in <strong>Angular</strong> with <strong>Highcharts</strong>, including 5+ drill-down charts, and kept API responses under <strong>200ms</strong> with Redis caching.</li>
+              <li>Created end-to-end form validation with <strong>Zod</strong> (field-level and cross-field rules) that stops invalid and injection-style input before it reaches the back end.</li>
+              <li>Designed bulk <strong>Excel import</strong> workflows (ExcelJS) for files with <strong>1,000+ rows</strong>, using <strong>RabbitMQ</strong> to keep data consistent across microservice databases.</li>
+              <li>Cut redundant database queries by <strong>about 40%</strong> with targeted <strong>Redis</strong> caching on busy endpoints, supporting <strong>50+</strong> concurrent users and <strong>100k+</strong> requests a day.</li>
+              <li>Defined clear <strong>REST API</strong> contracts with unit tests, and used RabbitMQ for asynchronous syncing between services.</li>
+            </ul>
+            <ul class="tag-list" style="margin-top: 1rem">
+              <li>Angular</li><li>NestJS</li><li>Highcharts</li><li>MySQL</li><li>PostgreSQL</li><li>MongoDB</li><li>Redis</li><li>RabbitMQ</li>
+            </ul>
+          </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="education" class="section" aria-labelledby="education-heading">
+        <div class="container">
+          <h2 id="education-heading" class="section-title" data-reveal>Education</h2>
+          <article class="timeline-card" data-reveal>
+            <h3>B.Tech (Honours) in Computer Science &amp; Engineering (IoT)</h3>
+            <p class="company">Raghu Engineering College</p>
+            <p class="meta">Visakhapatnam, Andhra Pradesh · November 2021 – April 2025</p>
+            <span class="gpa-pill">GPA: 8.85 / 10.0</span>
+            <ul>
+              <li>Graduated with a B.Tech Honours degree in Computer Science and Engineering</li>
+              <li>Earned the NPTEL certification in Database Management Systems (DBMS), September 2024</li>
+              <li>IoT specialization: embedded systems, sensors, real-time data processing and cloud integration</li>
+            </ul>
+            <ul class="tag-list" style="margin-top: 1rem">
+              <li>Data Structures</li><li>DBMS</li><li>Web Development</li><li>Cloud Computing</li><li>IoT Fundamentals</li><li>Software Engineering</li><li>Operating Systems</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="contact" class="section section--alt" aria-labelledby="contact-heading">
+        <div class="container contact-block">
+          <h2 id="contact-heading" class="section-title" data-reveal>Let&rsquo;s talk</h2>
+          <p class="section-lead" data-reveal style="margin-inline: auto">I&rsquo;m open to full-time Full Stack Developer roles. Email is the best way to reach me, and I usually reply within a couple of days.</p>
+          <div class="contact-actions" data-reveal>
+            <a class="btn btn--primary" href="mailto:dasarisatyasairohit@gmail.com">dasarisatyasairohit@gmail.com</a>
+            <button type="button" class="btn btn--secondary" id="copy-email" data-email="dasarisatyasairohit@gmail.com">Copy email</button>
+          </div>
+          <div class="social-row" data-reveal>
+            <a href="https://github.com/DasariSatyaSaiRohit" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a>
+            <a href="https://www.linkedin.com/in/satya-sai-rohit-dasari-547250286/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+            <a href="#" data-resume-link download aria-label="Download resume"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12m0 0l4-4m-4 4L8 11M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg></a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container site-footer__inner">
+        <p>&copy; <span id="footer-year"></span> Satya Sai Rohit Dasari</p>
+        <a class="text-link" href="#top" id="back-to-top">Back to top</a>
       </div>
+    </footer>
 
-    </div>
-    <div style="text-align:center;margin-top:2rem;">
-      <a class="view-all-btn" onclick="showPage('projects');return false;" href="#">View All Projects →</a>
-    </div>
-  </div>
-  </div>
-
-  <!-- EXPERIENCE PREVIEW -->
-  <div class="section">
-    <h2 class="section-title">Experience</h2>
-    <div class="section-divider"></div>
-    <div class="exp-card">
-      <div class="exp-role">Software Development Engineer</div>
-      <div class="exp-company">Akrivia Automation</div>
-      <div class="exp-meta">📍 Visakhapatnam, India &nbsp;·&nbsp; July 2024 – May 2026 (2 years)</div>
-      <div class="exp-desc">Building BI dashboards, bulk Excel workflows, and high-performance APIs with Redis optimisation and RabbitMQ messaging across microservices.</div>
-      <br/>
-      <a class="card-link" onclick="showPage('experience');return false;" href="#">View Full Experience →</a>
-    </div>
-    <div style="text-align:center;">
-      <a class="view-all-btn" onclick="showPage('experience');return false;" href="#">View Full Experience →</a>
-    </div>
-  </div>
-
-  <!-- EDUCATION PREVIEW -->
-  <div style="background:#F0F4FF;padding:2px 0;">
-  <div class="section">
-    <h2 class="section-title">Education</h2>
-    <div class="section-divider"></div>
-    <div class="exp-card">
-      <div class="exp-role">B.Tech</div>
-      <div class="exp-company">CSE (IoT) — Internet of Things</div>
-      <div class="exp-meta">Raghu Engineering College &nbsp;·&nbsp; Visakhapatnam, Andhra Pradesh</div>
-      <div class="exp-meta">Nov 2021 – Apr 2025</div>
-      <div class="gpa-badge">GPA: 8.85 / 10</div>
-      <br/>
-      <a class="card-link" onclick="showPage('education');return false;" href="#">View Full Education →</a>
-    </div>
-    <div style="text-align:center;">
-      <a class="view-all-btn" onclick="showPage('education');return false;" href="#">View Full Education →</a>
-    </div>
-  </div>
-  </div>
-
-</div><!-- /page-home -->
-
-
-<!-- ══════════════════════════════════════════ PAGE 2: PROJECTS ══════════════════════════════════════════ -->
-<div id="page-projects" class="page">
-  <button class="back-btn" onclick="showPage('home')">← Back to Home</button>
-  <div class="page-inner">
-    <h2 class="page-title">All Projects</h2>
-    <div class="page-rule"></div>
-
-    <div class="full-card">
-      <div style="width:100%;height:90px;border-radius:8px;background:linear-gradient(135deg,#E6F0FF,#D0E8FF);display:flex;align-items:center;justify-content:center;font-size:2.5rem;margin-bottom:1.2rem;">🧠</div>
-      <div class="full-card-title">QueryMind — Natural Language to SQL Engine</div>
-      <div class="card-year">2025</div>
-      <div style="height:1px;background:#DDDDDD;margin:14px 0;"></div>
-      <div class="card-label">Problem It Solves</div>
-      <p class="card-desc">Enterprises need to query databases without knowing SQL. QueryMind bridges that gap with a full-stack microservices system — NestJS gateway with JWT auth and rate-limiting, a FastAPI service for SQL generation and validation, and a React dashboard. Supports PostgreSQL, MySQL, and SQLite with multi-database routing and enterprise-grade security throughout.</p>
-      <div class="card-label" style="margin-top:12px;">Skills Used</div>
-      <div class="card-tags" style="margin-bottom:14px;">
-        <span class="card-tag">Python</span><span class="card-tag">FastAPI</span>
-        <span class="card-tag">React</span><span class="card-tag">NestJS</span>
-        <span class="card-tag">PostgreSQL</span><span class="card-tag">Redis</span>
-        <span class="card-tag">RabbitMQ</span><span class="card-tag">Celery</span>
-        <span class="card-tag">Docker</span><span class="card-tag">JWT Auth</span>
-        <span class="card-tag">SQLGlot</span><span class="card-tag">Ollama LLM</span>
+    <dialog id="project-dialog" class="project-dialog" aria-labelledby="project-dialog-title">
+      <div class="project-dialog__inner">
+        <form method="dialog"><button type="submit" class="icon-btn project-dialog__close" aria-label="Close case study">&times;</button></form>
+        <div id="project-dialog-body"></div>
       </div>
-      <div class="card-label">Key Achievements</div>
-      <ul class="bullets">
-        <li>Built NL-to-SQL microservices with NestJS gateway + FastAPI inference service</li>
-        <li>Async non-blocking architecture with Celery workers and RabbitMQ for history persistence</li>
-        <li>Three-layer validation: regex → SQLGlot AST parse → schema check</li>
-        <li>Reduced DB introspection by ~60% via Redis schema caching (sub-200ms responses)</li>
-        <li>SELECT-only enforcement + Fernet credential encryption + role-based access control</li>
-        <li>Structured logging with request tracing across all services</li>
-      </ul>
-      <div class="full-card-links">
-        <a class="full-link-btn" href="https://github.com/DasariSatyaSaiRohit" target="_blank">GitHub Repository →</a>
-      </div>
-    </div>
+    </dialog>
 
-    <div class="full-card">
-      <div style="width:100%;height:90px;border-radius:8px;background:linear-gradient(135deg,#F0E6FF,#E6F0FF);display:flex;align-items:center;justify-content:center;font-size:2.5rem;margin-bottom:1.2rem;">📄</div>
-      <div class="full-card-title">ResumeJobMatcher — AI-Powered Job Finder</div>
-      <div class="card-year">2025</div>
-      <div style="height:1px;background:#DDDDDD;margin:14px 0;"></div>
-      <div class="card-label">Problem It Solves</div>
-      <p class="card-desc">Job seekers struggle to find roles that genuinely match their skills. ResumeJobMatcher is a completely browser-based tool that parses uploaded PDF or DOCX resumes using pdfjs-dist and Mammoth.js, sends the parsed content to the Claude API, and returns 15 AI-matched job listings with direct apply links — no backend or server required.</p>
-      <div class="card-label" style="margin-top:12px;">Skills Used</div>
-      <div class="card-tags" style="margin-bottom:14px;">
-        <span class="card-tag">Angular 17</span><span class="card-tag">TypeScript</span>
-        <span class="card-tag">Tailwind CSS</span><span class="card-tag">Anthropic API</span>
-        <span class="card-tag">PDF.js</span><span class="card-tag">Mammoth.js</span>
-      </div>
-      <div class="card-label">Key Achievements</div>
-      <ul class="bullets">
-        <li>Zero-backend architecture — everything runs client-side in the browser</li>
-        <li>Parses both PDF and DOCX formats via pdfjs-dist and Mammoth.js</li>
-        <li>Claude API integration returns 15+ curated job matches with apply links</li>
-        <li>Built with Angular 17 standalone components and Tailwind CSS</li>
-      </ul>
-      <div class="full-card-links">
-        <a class="full-link-btn" href="https://github.com/DasariSatyaSaiRohit" target="_blank">GitHub Repository →</a>
-      </div>
-    </div>
+    <script>
 
-    <div class="full-card">
-      <div style="width:100%;height:90px;border-radius:8px;background:linear-gradient(135deg,#E6F9FF,#E6F0FF);display:flex;align-items:center;justify-content:center;font-size:2.5rem;margin-bottom:1.2rem;">📊</div>
-      <div class="full-card-title">Advanced BI Dashboard System</div>
-      <div class="card-year">2024</div>
-      <div style="height:1px;background:#DDDDDD;margin:14px 0;"></div>
-      <div class="card-label">Problem It Solves</div>
-      <p class="card-desc">Business teams needed interactive drill-down analytics without waiting minutes for data to load. This system delivers custom BI dashboards with 5+ Highcharts chart types, drill-down filters, and sub-200ms API responses via Redis caching — maintaining performance under 50+ concurrent users and 100,000+ daily requests.</p>
-      <div class="card-label" style="margin-top:12px;">Skills Used</div>
-      <div class="card-tags" style="margin-bottom:14px;">
-        <span class="card-tag">Angular</span><span class="card-tag">Highcharts</span>
-        <span class="card-tag">Redux</span><span class="card-tag">MySQL</span>
-        <span class="card-tag">PostgreSQL</span><span class="card-tag">Redis</span>
-        <span class="card-tag">API Design</span><span class="card-tag">Jest</span>
-      </div>
-      <div class="card-label">Key Achievements</div>
-      <ul class="bullets">
-        <li>5+ drill-down chart types with interactive filters and dynamic data loading</li>
-        <li>Sub-200ms API response times under sustained load via Redis caching</li>
-        <li>~40% reduction in redundant DB queries on high-frequency endpoints</li>
-        <li>Unit tested with Jest across all critical data transformation layers</li>
-      </ul>
-    </div>
+/** Set when deployed, e.g. "https://your-name.vercel.app" (no trailing slash). */
+const SITE_ORIGIN = "";
 
-    <div class="full-card">
-      <div style="width:100%;height:90px;border-radius:8px;background:linear-gradient(135deg,#FFF5E6,#E6F0FF);display:flex;align-items:center;justify-content:center;font-size:2.5rem;margin-bottom:1.2rem;">📋</div>
-      <div class="full-card-title">Bulk Excel Workflow Engine</div>
-      <div class="card-year">2024</div>
-      <div style="height:1px;background:#DDDDDD;margin:14px 0;"></div>
-      <div class="card-label">Problem It Solves</div>
-      <p class="card-desc">Operations teams frequently upload large Excel files that must be validated and written to multiple microservice databases atomically. This engine processes 1,000+ row files with row-level validation, async RabbitMQ integration, and ACID transaction guarantees across PostgreSQL and MongoDB services — no partial failures.</p>
-      <div class="card-label" style="margin-top:12px;">Skills Used</div>
-      <div class="card-tags" style="margin-bottom:14px;">
-        <span class="card-tag">ExcelJS</span><span class="card-tag">Node.js</span>
-        <span class="card-tag">RabbitMQ</span><span class="card-tag">PostgreSQL</span>
-        <span class="card-tag">MongoDB</span><span class="card-tag">ACID Transactions</span>
-      </div>
-      <div class="card-label">Key Achievements</div>
-      <ul class="bullets">
-        <li>Handles 1,000+ row Excel files with per-row validation and error reporting</li>
-        <li>RabbitMQ integration ensures async processing without blocking API responses</li>
-        <li>ACID consistency maintained across PostgreSQL and MongoDB microservice DBs</li>
-        <li>Built with ExcelJS for efficient streaming parse of large files</li>
-      </ul>
-    </div>
+const RESUME_HREF = "assets/Dasari%20Satya%20Sai%20Rohit%20Resume%20BE.pdf";
+const RESUME_DOWNLOAD = "Dasari Satya Sai Rohit Resume BE.pdf";
 
-  </div>
-</div><!-- /page-projects -->
+const projects = [
+  {
+    slug: "role-assistant-chatbot",
+    title: "Role-Based Assistant Chatbot",
+    subtitle: "Infyshine platform",
+    year: 2026,
+    featured: true,
+    summary:
+      "A production chatbot that answers using RAG over pgvector and Gemini, adapts to each user&rsquo;s role, and runs Gemini security checks before touching any data.",
+    tags: ["RAG", "pgvector", "Gemini", "PostgreSQL", "Redis"],
+    cover: "assets/projects/role-chatbot.jpg",
+    coverAlt:
+      "UI preview of the role-based RAG assistant (Infyshine stack: pgvector, Gemini, Redis) — representative layout, private codebase.",
+    gallery: [
+      {
+        src: "assets/projects/role-chatbot.jpg",
+        alt: "Assistant chat with role-scoped RAG replies, Gemini security chips, and ticket automation entry points.",
+      },
+    ],
+    github: "",
+    demo: "",
+    problem:
+      "Users in different roles need reliable, relevant help with automations, analytics and support tickets, without exposing data across permissions or running unsafe queries.",
+    approach: [
+      "Designed the PostgreSQL schemas and pgvector retrieval pipeline so each role only retrieves the knowledge it is allowed to see.",
+      "Used Gemini to power answers, automations, analytics insights and ticket workflows from a single chat window.",
+      "Added a Gemini query security check before any sensitive database or API operation runs.",
+      "Used Redis caching to keep busy parts of the platform fast and resilient.",
+    ],
+    result: [
+      "Gives **role-based assistance** that matches the logged-in user&rsquo;s permissions.",
+      "Keeps proctoring data **private across roles and sessions**.",
+      "Offers one place for guidance, automation triggers, analytics and raising tickets.",
+    ],
+    stack: [
+      "Python",
+      "FastAPI",
+      "PostgreSQL",
+      "pgvector",
+      "Redis",
+      "Gemini",
+      "RAG",
+      "Orchestration",
+    ],
+  },
+  {
+    slug: "resume-job-matcher",
+    title: "ResumeJobMatcher",
+    subtitle: "AI-Powered Job Finder",
+    year: 2025,
+    summary:
+      "A browser-only Angular app that reads your PDF or DOCX resume and returns 15 AI-matched job listings with apply links. No backend needed.",
+    tags: ["Angular 17", "TypeScript", "Anthropic API", "PDF.js", "Tailwind CSS"],
+    cover: "assets/projects/resume-matcher.jpg",
+    coverAlt:
+      "Screenshot of the ResumeJobMatcher upload and source-selection UI from the public GitHub repository build.",
+    gallery: [
+      {
+        src: "assets/projects/resume-matcher.jpg",
+        alt: "Source selection and resume upload — Angular app from the Resume-Based-Jobs repository.",
+      },
+      {
+        src: "assets/projects/resume-matcher-results.jpg",
+        alt: "Matched jobs grid with scores and apply links — layout from the repo results view.",
+      },
+    ],
+    github: "https://github.com/DasariSatyaSaiRohit/Resume-Based-Jobs",
+    demo: "",
+    problem:
+      "Job seekers lose time on listings that do not fit their skills, and many tools ask them to upload resumes to servers they do not know or trust.",
+    approach: [
+      "Parsed resumes in the browser with pdfjs-dist and Mammoth.js, so nothing is stored on a server.",
+      "Used the Claude API to score and rank roles based on the resume text.",
+      "Built a simple upload-and-results flow with Angular 17 standalone components and Tailwind CSS.",
+    ],
+    result: [
+      "Returns **15 matched jobs** with direct apply links in each session.",
+      "Runs fully in the browser, so parsing and API calls need no backend.",
+    ],
+    stack: ["Angular 17", "TypeScript", "Tailwind CSS", "Anthropic API", "PDF.js", "Mammoth.js"],
+  },
+  {
+    slug: "bi-dashboard",
+    title: "Advanced BI Dashboard System",
+    year: 2024,
+    summary:
+      "Angular dashboards with 5+ drill-down Highcharts views and sub-200ms APIs through Redis caching, built for 50+ concurrent users and 100k+ requests a day.",
+    tags: ["Angular", "Highcharts", "Redis", "MySQL", "Jest"],
+    cover: "assets/projects/bi-dashboard.jpg",
+    coverAlt:
+      "UI preview of drill-down Highcharts BI dashboards (Angular, Redis-backed APIs) — representative layout, private codebase.",
+    gallery: [
+      {
+        src: "assets/projects/bi-dashboard.jpg",
+        alt: "Four-chart operations dashboard with region filters and Redis-backed API latency badge.",
+      },
+    ],
+    github: "",
+    demo: "",
+    problem:
+      "Business teams needed interactive, drill-down analytics that stay fast even when many people use them at once.",
+    approach: [
+      "Built the Angular front end with 5+ Highcharts chart types and dynamic filters for drilling into the data.",
+      "Added a Redis caching layer to frequently used API endpoints and used Redux to keep state predictable.",
+      "Wrote Jest tests for the key data-transformation logic.",
+    ],
+    result: [
+      "API responses stay **under 200ms** under sustained load.",
+      "Redundant database queries dropped by **about 40%**, supporting **50+** concurrent users and **100k+** requests a day.",
+    ],
+    stack: ["Angular", "Highcharts", "Redux", "MySQL", "PostgreSQL", "Redis", "Jest"],
+  },
+  {
+    slug: "querymind",
+    title: "QueryMind",
+    subtitle: "Natural Language to SQL Engine",
+    year: 2025,
+    featured: true,
+    summary:
+      "A full stack natural-language-to-SQL platform with a React dashboard, NestJS gateway and FastAPI service. It works across PostgreSQL, MySQL and SQLite with secure, SELECT-only queries.",
+    tags: ["Python", "FastAPI", "React", "NestJS", "PostgreSQL"],
+    cover: "assets/projects/querymind.jpg",
+    coverAlt:
+      "QueryMind NL-to-SQL workspace preview derived from the public repo QueryPage layout and README sample query.",
+    gallery: [
+      {
+        src: "assets/projects/querymind.jpg",
+        alt: "NL-to-SQL workspace with question panel, generated SQL, and result grid — from QueryPage layout.",
+      },
+      {
+        src: "assets/projects/querymind-login.jpg",
+        alt: "QueryMind sign-in screen — layout from the repository LoginPage component.",
+      },
+    ],
+    github: "https://github.com/DasariSatyaSaiRohit/QueryMind---Natural-Language-to-SQL-Engine",
+    demo: "",
+    problem:
+      "Teams want to ask questions of their databases in plain English without writing SQL, and without giving up security or speed.",
+    approach: [
+      "Built a React dashboard for asking questions, viewing results and managing database connections.",
+      "Created a NestJS gateway with JWT authentication, rate limiting and routing across multiple databases.",
+      "Built a FastAPI service that generates SQL with a local Ollama LLM and checks it in three layers: regex, SQLGlot AST and schema validation.",
+      "Used RabbitMQ and Celery to save query history in the background, and Redis to cache database schemas.",
+    ],
+    result: [
+      "Responses arrive in **under 200ms**, and Redis schema caching cut database introspection by **about 60%**.",
+      "Security is built in: SELECT-only queries, Fernet-encrypted credentials and role-based access control.",
+    ],
+    stack: ["Python", "FastAPI", "React", "NestJS", "PostgreSQL", "Redis", "RabbitMQ", "Docker"],
+  },
+];
 
-
-<!-- ══════════════════════════════════════════ PAGE 3: EXPERIENCE ══════════════════════════════════════════ -->
-<div id="page-experience" class="page">
-  <button class="back-btn" onclick="showPage('home')">← Back to Home</button>
-  <div class="page-inner">
-    <h2 class="page-title">Professional Experience</h2>
-    <div class="page-rule"></div>
-
-    <div class="full-card">
-      <div style="font-size:20px;font-weight:700;color:#1A1A1A;margin-bottom:4px;">Software Development Engineer</div>
-      <div style="font-size:18px;font-weight:600;color:#0066FF;margin-bottom:4px;">Akrivia Automation</div>
-      <div style="font-size:14px;color:#666;margin-bottom:16px;">📍 Visakhapatnam, India &nbsp;·&nbsp; July 2024 – May 2026 (2 years)</div>
-      <div style="height:1px;background:#DDDDDD;margin-bottom:16px;"></div>
-      <div class="card-label">Achievements &amp; Metrics</div>
-      <ul class="bullets">
-        <li>Built custom BI dashboards (Highcharts/Angular) with 5+ drill-down charts and sub-200ms API responses via Redis caching</li>
-        <li>Designed complex forms end-to-end with Zod schema validation — field-level rules, cross-field constraints, and injection prevention</li>
-        <li>Built bulk Excel workflows (ExcelJS) handling 1,000+ row files with row-level validation and RabbitMQ integration for ACID consistency across microservice DBs</li>
-        <li>Reduced redundant DB queries by ~40% via Redis caching on high-frequency endpoints (50+ concurrent users, 100k+ requests/day)</li>
-        <li>Designed RESTful APIs with documented contracts and unit tests; async inter-service sync via RabbitMQ</li>
-      </ul>
-      <div style="height:1px;background:#DDDDDD;margin:16px 0;"></div>
-      <div class="card-label">Tech Stack</div>
-      <div class="card-tags">
-        <span class="card-tag">MySQL</span><span class="card-tag">PostgreSQL</span>
-        <span class="card-tag">MongoDB</span><span class="card-tag">Angular</span>
-        <span class="card-tag">NestJS</span><span class="card-tag">React</span>
-        <span class="card-tag">Redis</span><span class="card-tag">RabbitMQ</span>
-        <span class="card-tag">Jira</span><span class="card-tag">Git</span>
-        <span class="card-tag">Postman</span>
-      </div>
-    </div>
-  </div>
-</div><!-- /page-experience -->
-
-
-<!-- ══════════════════════════════════════════ PAGE 4: EDUCATION ══════════════════════════════════════════ -->
-<div id="page-education" class="page">
-  <button class="back-btn" onclick="showPage('home')">← Back to Home</button>
-  <div class="page-inner">
-    <h2 class="page-title">Education</h2>
-    <div class="page-rule"></div>
-
-    <div class="full-card">
-      <div style="font-size:20px;font-weight:700;color:#1A1A1A;margin-bottom:4px;">B.Tech in CSE (IoT)</div>
-      <div style="font-size:18px;font-weight:600;color:#0066FF;margin-bottom:4px;">Internet of Things</div>
-      <div style="font-size:18px;font-weight:500;color:#1A1A1A;margin-bottom:4px;">Raghu Engineering College</div>
-      <div style="font-size:14px;color:#666;">📍 Visakhapatnam, Andhra Pradesh, India</div>
-      <div style="font-size:14px;color:#666;margin-bottom:8px;">November 2021 – April 2025</div>
-      <span class="gpa-badge">GPA: 8.85 / 10.0</span>
-      <div style="height:1px;background:#DDDDDD;margin:16px 0;"></div>
-      <div class="card-label">Achievements</div>
-      <ul class="bullets">
-        <li>B.Tech Honours Degree in Computer Science and Engineering</li>
-        <li>DBMS — NPTEL Certification, September 2024</li>
-        <li>IoT Specialisation: Embedded systems, Sensors, Real-time data processing, Cloud integration</li>
-        <li>Consistent high performance across all semesters — GPA 8.85/10</li>
-      </ul>
-      <div style="height:1px;background:#DDDDDD;margin:16px 0;"></div>
-      <div class="card-label">Core Coursework</div>
-      <div style="margin-top:8px;">
-        <span class="edu-badge">Data Structures</span>
-        <span class="edu-badge">DBMS</span>
-        <span class="edu-badge">Web Development</span>
-        <span class="edu-badge">Cloud Computing</span>
-        <span class="edu-badge">IoT Fundamentals</span>
-        <span class="edu-badge">Software Engineering</span>
-        <span class="edu-badge">Operating Systems</span>
-      </div>
-    </div>
-  </div>
-</div><!-- /page-education -->
-
-<script>
-function showPage(name){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById('page-'+name).classList.add('active');
-  window.scrollTo({top:0,behavior:'smooth'});
+function getProject(slug) {
+  return projects.find(function (p) { return p.slug === slug; });
 }
-</script>
-</body>
+
+
+(function () {
+  var THEME_KEY = "theme";
+  var HEADER_OFFSET = 80;
+
+  function escapeAttr(text) {
+    return String(text)
+      .replace(/&/g, "&amp;")
+      .replace(/"/g, "&quot;")
+      .replace(/</g, "&lt;");
+  }
+  function initSiteMeta() {
+    var origin = typeof SITE_ORIGIN === "string" ? SITE_ORIGIN.replace(/\/$/, "") : "";
+    if (!origin) return;
+    var canonical = document.getElementById("site-canonical");
+    if (canonical) canonical.href = origin + "/";
+    var ogUrl = document.getElementById("og-url");
+    if (ogUrl) ogUrl.content = origin + "/";
+    var ogImage = document.getElementById("og-image");
+    var twitterImage = document.getElementById("twitter-image");
+    var imagePath = "assets/og-image.png";
+    if (ogImage) ogImage.content = origin + "/" + imagePath;
+    if (twitterImage) twitterImage.content = origin + "/" + imagePath;
+    var ld = document.getElementById("person-ld");
+    if (ld) {
+      try {
+        var data = JSON.parse(ld.textContent);
+        data.url = origin + "/";
+        ld.textContent = JSON.stringify(data);
+      } catch (e) {}
+    }
+  }
+  function initResumeLinks() {
+    document.querySelectorAll("[data-resume-link]").forEach(function (el) {
+      el.setAttribute("href", RESUME_HREF);
+      if (!el.getAttribute("download")) el.setAttribute("download", RESUME_DOWNLOAD);
+    });
+  }
+  function safeStorageGet(key) {
+    try { return localStorage.getItem(key); } catch (e) { return null; }
+  }
+  function safeStorageSet(key, value) {
+    try { localStorage.setItem(key, value); } catch (e) {}
+  }
+  function getPreferredTheme() {
+    var stored = safeStorageGet(THEME_KEY);
+    if (stored === "light" || stored === "dark") return stored;
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  }
+  function applyTheme(theme) {
+    document.documentElement.setAttribute("data-theme", theme);
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute("content", theme === "dark" ? "#1f1916" : "#f7f2ea");
+    var toggle = document.getElementById("theme-toggle");
+    if (toggle) toggle.setAttribute("aria-pressed", theme === "dark" ? "true" : "false");
+  }
+  function initThemeToggle() {
+    applyTheme(getPreferredTheme());
+    var toggle = document.getElementById("theme-toggle");
+    if (!toggle) return;
+    toggle.addEventListener("click", function () {
+      var next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+      applyTheme(next);
+      safeStorageSet(THEME_KEY, next);
+    });
+  }
+  function initMobileNav() {
+    var btn = document.getElementById("nav-toggle");
+    var panel = document.getElementById("nav-panel");
+    if (!btn || !panel) return;
+    var closeTimer = null;
+    function openPanel() {
+      if (closeTimer) {
+        clearTimeout(closeTimer);
+        closeTimer = null;
+      }
+      panel.hidden = false;
+      requestAnimationFrame(function () {
+        panel.classList.add("is-open");
+      });
+      btn.setAttribute("aria-expanded", "true");
+      document.body.classList.add("nav-open");
+      var a = panel.querySelector("a");
+      if (a) a.focus();
+    }
+    function closePanel() {
+      panel.classList.remove("is-open");
+      btn.setAttribute("aria-expanded", "false");
+      document.body.classList.remove("nav-open");
+      closeTimer = setTimeout(function () {
+        panel.hidden = true;
+        closeTimer = null;
+      }, 320);
+    }
+    btn.addEventListener("click", function () {
+      if (panel.hidden || !panel.classList.contains("is-open")) openPanel();
+      else closePanel();
+    });
+    panel.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", closePanel);
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && panel.classList.contains("is-open")) {
+        closePanel();
+        btn.focus();
+      }
+    });
+  }
+  function initScrollChrome() {
+    var header = document.getElementById("site-header");
+    var progress = document.getElementById("scroll-progress");
+    var ticking = false;
+    function update() {
+      ticking = false;
+      var y = window.scrollY || document.documentElement.scrollTop;
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      if (header) header.classList.toggle("is-scrolled", y > 16);
+      if (progress) {
+        var ratio = max > 0 ? Math.min(1, y / max) : 0;
+        progress.style.transform = "scaleX(" + ratio + ")";
+        progress.classList.toggle("is-active", y > 40);
+      }
+    }
+    window.addEventListener(
+      "scroll",
+      function () {
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(update);
+        }
+      },
+      { passive: true }
+    );
+    update();
+  }
+  function initSmoothAnchors() {
+    document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+      link.addEventListener("click", function (e) {
+        var hash = link.getAttribute("href");
+        if (!hash || hash === "#" || hash.indexOf("#project/") === 0) return;
+        var target = document.querySelector(hash);
+        if (!target) return;
+        e.preventDefault();
+        var header = document.getElementById("site-header");
+        var offset = (header ? header.offsetHeight : HEADER_OFFSET) + 12;
+        var top = target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
+        if (hash !== location.hash) history.pushState(null, "", hash);
+      });
+    });
+  }
+  var revealObserver = null;
+  function getRevealObserver() {
+    if (revealObserver) return revealObserver;
+    revealObserver = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.08, rootMargin: "0px 0px -6% 0px" }
+    );
+    return revealObserver;
+  }
+  function staggerRevealDelays(scope) {
+    var root = scope || document;
+    root.querySelectorAll("[data-reveal-stagger]").forEach(function (container) {
+      container.querySelectorAll(":scope > [data-reveal]").forEach(function (el, i) {
+        el.style.setProperty("--reveal-delay", i * 85 + "ms");
+      });
+    });
+  }
+  function observeRevealElements(nodes) {
+    var observer = getRevealObserver();
+    nodes.forEach(function (el) {
+      if (!el.hasAttribute("data-reveal")) return;
+      observer.observe(el);
+    });
+  }
+  function initActiveNav() {
+    var links = Array.prototype.slice.call(
+      document.querySelectorAll(".site-nav a[data-section], .nav-panel a[data-section]")
+    );
+    var sections = links.map(function (a) { return document.getElementById(a.dataset.section); }).filter(Boolean);
+    if (!sections.length) return;
+    var observer = new IntersectionObserver(
+      function (entries) {
+        var visible = entries.filter(function (e) { return e.isIntersecting; })
+          .sort(function (a, b) { return b.intersectionRatio - a.intersectionRatio; })[0];
+        if (!visible) return;
+        var id = visible.target.id;
+        links.forEach(function (link) {
+          var active = link.dataset.section === id;
+          link.classList.toggle("is-active", active);
+          if (active) link.setAttribute("aria-current", "page");
+          else link.removeAttribute("aria-current");
+        });
+      },
+      { rootMargin: "-" + HEADER_OFFSET + "px 0px -55% 0px", threshold: [0.1, 0.25, 0.5] }
+    );
+    sections.forEach(function (s) { observer.observe(s); });
+  }
+  function initScrollReveal() {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      document.querySelectorAll("[data-reveal]").forEach(function (el) {
+        el.classList.add("is-visible");
+      });
+      return;
+    }
+    staggerRevealDelays(document);
+    observeRevealElements(document.querySelectorAll("[data-reveal]"));
+  }
+  function parseResultHtml(text) {
+    return text.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+  }
+  function renderProjectCards() {
+    var grid = document.getElementById("work-grid");
+    if (!grid) return;
+    function cardHtml(p, featuredCard) {
+      var tags = p.tags.slice(0, 5);
+      var coverAlt = escapeAttr(p.coverAlt || p.title);
+      var caseLabel = escapeAttr("View case study: " + p.title);
+      return (
+        '<article class="project-card' + (featuredCard ? " project-card--featured" : "") + '" data-reveal>' +
+        '<a class="project-card__media" href="#project/' + p.slug + '" data-project-open="' + p.slug + '" aria-label="' + caseLabel + '">' +
+        '<img src="' + p.cover + '" alt="' + coverAlt + '" width="640" height="' + (featuredCard ? 360 : 240) + '" loading="lazy" decoding="async" />' +
+        "</a><div class=\"project-card__body\"><div class=\"project-card__meta\">" +
+        '<h3 class="project-card__title"><a href="#project/' + p.slug + '" data-project-open="' + p.slug + '">' + p.title + "</a></h3>" +
+        '<span class="project-card__year">' + p.year + "</span></div>" +
+        (p.subtitle && featuredCard ? '<p class="project-card__subtitle">' + p.subtitle + "</p>" : "") +
+        '<p class="project-card__summary">' + p.summary + "</p>" +
+        '<ul class="tag-list">' + tags.map(function (t) { return "<li>" + t + "</li>"; }).join("") + "</ul>" +
+        '<a class="text-link" href="#project/' + p.slug + '" data-project-open="' + p.slug + '">View case study</a></div></article>'
+      );
+    }
+    grid.innerHTML = projects.map(function (p) { return cardHtml(p, !!p.featured); }).join("");
+    grid.removeAttribute("aria-busy");
+    grid.removeAttribute("aria-label");
+    staggerRevealDelays(grid);
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      grid.querySelectorAll("[data-reveal]").forEach(function (el) {
+        el.classList.add("is-visible");
+      });
+    } else {
+      observeRevealElements(grid.querySelectorAll("[data-reveal]"));
+    }
+  }
+  function getProjectGallery(p) {
+    if (p.gallery && p.gallery.length) return p.gallery;
+    return [{ src: p.cover, alt: p.coverAlt || p.title }];
+  }
+  function buildCaseStudyGallery(p) {
+    var slides = getProjectGallery(p);
+    if (slides.length === 1) {
+      var one = slides[0];
+      return (
+        '<figure class="case-study__gallery">' +
+        '<img class="case-study__cover" src="' + one.src + '" alt="' + escapeAttr(one.alt) + '" width="800" height="450" />' +
+        "</figure>"
+      );
+    }
+    var id = "cs-carousel-" + p.slug;
+    var slideHtml = slides
+      .map(function (s, i) {
+        return (
+          '<figure class="case-study-carousel__slide" id="' + id + "-slide-" + i + '">' +
+          '<img src="' + s.src + '" alt="' + escapeAttr(s.alt) + '" width="800" height="450" loading="lazy" decoding="async" />' +
+          '<figcaption class="case-study-carousel__caption">' + escapeAttr(s.alt) + "</figcaption></figure>"
+        );
+      })
+      .join("");
+    return (
+      '<div class="case-study__gallery case-study-carousel" data-carousel data-carousel-id="' + id + '" tabindex="0">' +
+      '<div class="case-study-carousel__viewport" aria-roledescription="carousel" aria-label="Project screenshots">' +
+      '<div class="case-study-carousel__track">' +
+      slideHtml +
+      "</div></div>" +
+      '<div class="case-study-carousel__controls">' +
+      '<button type="button" class="case-study-carousel__btn" data-carousel-prev aria-label="Previous screenshot">‹</button>' +
+      '<button type="button" class="case-study-carousel__btn" data-carousel-next aria-label="Next screenshot">›</button>' +
+      "</div>" +
+      '<div class="case-study-carousel__dots" role="tablist" aria-label="Screenshot slides">' +
+      slides
+        .map(function (_, i) {
+          return (
+            '<button type="button" class="case-study-carousel__dot' +
+            (i === 0 ? " is-active" : "") +
+            '" data-carousel-dot="' +
+            i +
+            '" role="tab" aria-selected="' +
+            (i === 0 ? "true" : "false") +
+            '" aria-controls="' +
+            id +
+            "-slide-" +
+            i +
+            '"></button>'
+          );
+        })
+        .join("") +
+      "</div></div>"
+    );
+  }
+  function initCaseStudyCarousel(root) {
+    var carousel = root.querySelector("[data-carousel]");
+    if (!carousel) return;
+    var track = carousel.querySelector(".case-study-carousel__track");
+    var slides = carousel.querySelectorAll(".case-study-carousel__slide");
+    var dots = carousel.querySelectorAll("[data-carousel-dot]");
+    var prev = carousel.querySelector("[data-carousel-prev]");
+    var next = carousel.querySelector("[data-carousel-next]");
+    var index = 0;
+    function goTo(i) {
+      index = (i + slides.length) % slides.length;
+      track.style.transform = "translateX(-" + index * 100 + "%)";
+      dots.forEach(function (dot, di) {
+        var active = di === index;
+        dot.classList.toggle("is-active", active);
+        dot.setAttribute("aria-selected", active ? "true" : "false");
+      });
+      if (prev) prev.disabled = slides.length <= 1;
+      if (next) next.disabled = slides.length <= 1;
+    }
+    if (prev) prev.addEventListener("click", function () { goTo(index - 1); });
+    if (next) next.addEventListener("click", function () { goTo(index + 1); });
+    dots.forEach(function (dot) {
+      dot.addEventListener("click", function () {
+        goTo(parseInt(dot.getAttribute("data-carousel-dot"), 10));
+      });
+    });
+    carousel.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowLeft") { e.preventDefault(); goTo(index - 1); }
+      if (e.key === "ArrowRight") { e.preventDefault(); goTo(index + 1); }
+    });
+    goTo(0);
+  }
+  function buildCaseStudyActions(p) {
+    var parts = [];
+    if (p.github) {
+      parts.push(
+        '<a class="btn btn--primary" href="' + p.github + '" target="_blank" rel="noopener noreferrer">GitHub</a>'
+      );
+    }
+    if (p.demo) {
+      parts.push(
+        '<a class="btn btn--secondary" href="' + p.demo + '" target="_blank" rel="noopener noreferrer">Live demo</a>'
+      );
+    }
+    if (!parts.length) {
+      return (
+        '<p class="case-study__notice">The source code and demo for this project are private because it is client or company work. Happy to share more details on request.</p>'
+      );
+    }
+    return '<div class="case-study__actions">' + parts.join("") + "</div>";
+  }
+  function openProjectModal(slug) {
+    var p = getProject(slug);
+    var dialog = document.getElementById("project-dialog");
+    var body = document.getElementById("project-dialog-body");
+    if (!p || !dialog || !body) return;
+    var galleryBlock = buildCaseStudyGallery(p);
+    var actionsBlock = buildCaseStudyActions(p);
+    body.innerHTML =
+      '<header class="case-study__header"><p class="case-study__eyebrow">' + p.year + (p.subtitle ? " · " + p.subtitle : "") +
+      '</p><h2 id="project-dialog-title" class="case-study__title">' + p.title + "</h2></header>" +
+      galleryBlock +
+      '<section aria-labelledby="cs-problem"><h3 id="cs-problem">Problem</h3><p>' + p.problem + "</p></section>" +
+      '<section aria-labelledby="cs-approach"><h3 id="cs-approach">Approach</h3><ul>' +
+      p.approach.map(function (a) { return "<li>" + a + "</li>"; }).join("") + "</ul></section>" +
+      '<section aria-labelledby="cs-result"><h3 id="cs-result">Result</h3><ul>' +
+      p.result.map(function (r) { return "<li>" + parseResultHtml(r) + "</li>"; }).join("") + "</ul></section>" +
+      '<section aria-labelledby="cs-stack"><h3 id="cs-stack">Stack</h3><ul class="tag-list">' +
+      p.stack.map(function (t) { return "<li>" + t + "</li>"; }).join("") + "</ul></section>" + actionsBlock;
+    initCaseStudyCarousel(body);
+    if (typeof dialog.showModal === "function") dialog.showModal();
+    else dialog.setAttribute("open", "");
+    history.pushState({ project: slug }, "", "#project/" + slug);
+  }
+  function closeProjectModal() {
+    var dialog = document.getElementById("project-dialog");
+    if (!dialog) return;
+    if (dialog.open) dialog.close();
+    dialog.removeAttribute("open");
+    if (location.hash.indexOf("#project/") === 0) history.pushState(null, "", "#work");
+  }
+  function initProjectModal() {
+    document.addEventListener("click", function (e) {
+      var t = e.target.closest("[data-project-open]");
+      if (t) { e.preventDefault(); openProjectModal(t.getAttribute("data-project-open")); }
+    });
+    var dialog = document.getElementById("project-dialog");
+    if (dialog) {
+      dialog.addEventListener("close", function () {
+        if (location.hash.indexOf("#project/") === 0) history.replaceState(null, "", "#work");
+      });
+      dialog.addEventListener("click", function (e) { if (e.target === dialog) closeProjectModal(); });
+    }
+    window.addEventListener("popstate", function () {
+      var match = location.hash.match(/^#project\/([^/]+)/);
+      if (match) openProjectModal(match[1]);
+      else closeProjectModal();
+    });
+    var match = location.hash.match(/^#project\/([^/]+)/);
+    if (match) openProjectModal(match[1]);
+  }
+  function initCopyEmail() {
+    var btn = document.getElementById("copy-email");
+    if (!btn) return;
+    btn.addEventListener("click", function () {
+      var email = btn.dataset.email;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(email).then(function () {
+          btn.textContent = "Copied!";
+          setTimeout(function () { btn.textContent = "Copy email"; }, 2000);
+        }).catch(function () { window.location.href = "mailto:" + email; });
+      } else {
+        window.location.href = "mailto:" + email;
+      }
+    });
+  }
+  function initBackToTop() {
+    var btn = document.getElementById("back-to-top");
+    if (btn) btn.addEventListener("click", function (e) { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); });
+  }
+  function initYear() {
+    var el = document.getElementById("footer-year");
+    if (el) el.textContent = String(new Date().getFullYear());
+  }
+  function boot() {
+    document.documentElement.classList.add("js-ready");
+    initSiteMeta();
+    initResumeLinks();
+    initThemeToggle();
+    initMobileNav();
+    initScrollChrome();
+    initSmoothAnchors();
+    initActiveNav();
+    renderProjectCards();
+    initScrollReveal();
+    initProjectModal();
+    initCopyEmail();
+    initBackToTop();
+    initYear();
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", boot);
+  } else {
+    boot();
+  }
+})();
+
+    </script>
+  </body>
 </html>
